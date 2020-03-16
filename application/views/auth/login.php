@@ -29,6 +29,7 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg"></p>
+                <?= $this->session->flashdata('message'); ?>
 
                 <form action="../../index3.html" method="post" class="mb-3">
                     <div class="input-group mb-3">
