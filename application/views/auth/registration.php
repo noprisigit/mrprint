@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Registration Page</title>
+    <title>mr.perint | Registration Page</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,13 +22,13 @@
 
 <body class="hold-transition register-page">
     <div class="register-box">
-        <div class="register-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
-        </div>
+        <!-- <div class="register-logo">
+            <a href="<?= base_url() ?>"><b>Admin</b>LTE</a>
+        </div> -->
 
         <div class="card">
             <div class="card-body register-card-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg"></p>
 
                 <form action="<?= base_url('auth/registration'); ?>" method="post">
                     <div class="form-group">
@@ -95,7 +95,7 @@
                 </form>
 
                 <div class="mt-2 text-center">
-                    <a href="login.html" class="text-center">I already have a membership</a>
+                    <a href="<?= base_url('auth'); ?>" class="text-center">I already have a membership</a>
                 </div>
             </div>
             <!-- /.form-box -->
