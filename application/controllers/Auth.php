@@ -11,7 +11,61 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        $this->load->view('auth/login');
+        $this->form_validation->set_rules('email', 'email', 'trim|required', [
+            'required'  => 'Please fill your %s',
+        ]);
+        $this->form_validation->set_rules('password', 'password', 'trim|required', [
+            'required'  => 'Please fill your %s'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('auth/login');
+        } else {
+            $data = [
+                'email'     => htmlspecialchars($this->input->post('email'), true),
+                'password'  => htmlspecialchars($this->input->post('password'), true)
+            ];
+
+            $user = $this->db->get_where('users', ['email' => $data['email']])->row_array();
+
+            if ($user) {
+                if (password_verify($data['password'], $user['password'])) {
+                    if ($user['status_account']) {
+                        $session = [
+                            'id_user'       => $user['id_user'],
+                            'full_name'     => $user['full_name'],
+                            'email'         => $user['email'],
+                            'status_access' => $user['status_access']
+                        ];
+
+                        $this->session->set_userdata($session);
+
+                        if ($user['status_access'] == 'owner') {
+                            redirect('owner');
+                        } elseif ($user['status_access'] == 'mitra') {
+                            redirect('partner');
+                        } else {
+                            redirect('customer');
+                        }
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">
+                            This email has not been activated.
+                        </div>');
+                        redirect('auth');
+                    }
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">
+                        Password is wrong.
+                    </div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">
+                    This email has not been registered.
+                </div>');
+                redirect('auth');
+            }
+        }
     }
 
     public function registration()
@@ -48,7 +102,7 @@ class Auth extends CI_Controller
 
             $this->db->insert('users', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success text-center">
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
                 Your account has been created. <br> Please check your email for activation.
             </div>');
             redirect('auth');
