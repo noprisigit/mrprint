@@ -42,7 +42,7 @@ class Auth extends CI_Controller
 
                         if ($user['status_access'] == 'owner') {
                             redirect('owner');
-                        } elseif ($user['status_access'] == 'mitra') {
+                        } elseif ($user['status_access'] == 'partner') {
                             redirect('partner');
                         } else {
                             redirect('customer');
@@ -101,6 +101,10 @@ class Auth extends CI_Controller
             ];
 
             $this->db->insert('users', $data);
+
+            $user = $this->db->get_where('users', ['email' => $this->input->post('email')])->row_array();
+
+            $this->db->insert('customers', ['id_user' => $user['id_user']]);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
                 Your account has been created. <br> Please check your email for activation.
