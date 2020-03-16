@@ -40,9 +40,19 @@ class Owner extends CI_Controller
         $this->load->view('template/footer');
     }
 
+    public function verify_transaction()
+    {
+        $header['title'] = "Verify Transaction";
+        $header['access'] = "Owner";
+
+        $this->load->view('template/header', $header);
+        $this->load->view('owner/dashboard');
+        $this->load->view('template/footer');
+    }
+
     public function transactions()
     {
-        $header['title'] = "Print Shop";
+        $header['title'] = "Transactions";
         $header['access'] = "Owner";
 
         $this->load->view('template/header', $header);

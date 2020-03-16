@@ -10,6 +10,8 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
@@ -22,7 +24,7 @@
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-orange navbar-light">
+        <nav class="main-header navbar navbar-expand <?php if ($this->session->userdata('status_access') == "owner") : ?> navbar-primary navbar-dark <?php else : ?>  navbar-orange navbar-light <?php endif; ?>">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -63,9 +65,9 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-light-orange elevation-4">
+        <aside class="main-sidebar <?php if ($this->session->userdata('status_access') == "owner") : ?> sidebar-light-primary <?php else : ?>  sidebar-light-orange <?php endif; ?> elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link navbar-orange">
+            <a href="../../index3.html" class="brand-link <?php if ($this->session->userdata('status_access') == "owner") : ?> navbar-primary <?php else : ?>  navbar-orange <?php endif; ?>">
                 <img src="<?= base_url('assets/'); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light text-white">AdminLTE 3</span>
             </a>
@@ -87,14 +89,48 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="<?= base_url('owner') ?>" class="nav-link active text-white">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Home
-                                </p>
-                            </a>
-                        </li>
+                        <?php if ($this->session->userdata('status_access') == 'owner') : ?>
+                            <li class="nav-item">
+                                <a href="<?= base_url('owner') ?>" class="nav-link <?= $title == "Home" ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Home
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('owner/users') ?>" class="nav-link <?= $title == "Users" ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Users
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('owner/print-shop') ?>" class="nav-link <?= $title == "Print Shop" ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon fas fa-store-alt"></i>
+                                    <p>
+                                        Print Shop
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('owner/verify-transaction') ?>" class="nav-link <?= $title == "Verify Transaction" ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon far fa-credit-card"></i>
+                                    <p>
+                                        Verify Transaction
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('owner/transactions') ?>" class="nav-link <?= $title == "Transactions" ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon fas fa-dollar-sign"></i>
+                                    <p>
+                                        Transactions
+                                    </p>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
