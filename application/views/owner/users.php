@@ -28,7 +28,7 @@
                         <td class="text-center">
                             <div class="btn-group">
                                 <span data-toggle="modal" data-target="#modal-detail">
-                                    <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>"><i class="fas fa-info-circle"></i></button>
+                                    <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>"><i class="fas fa-info-circle"></i></button>
                                 </span>
                                 <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Block"><i class="fas fa-ban"></i></button>
                                 <a href="<?= base_url('owner/delete-user/') . $item['id_user']; ?>" onclick="return confirm('Anda yakin ingin menghapus ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></a>

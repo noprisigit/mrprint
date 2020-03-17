@@ -28,6 +28,7 @@
 <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url('assets/'); ?>dist/js/demo.js"></script>
+<script src="<?= base_url('assets/'); ?>dist/js/script.js"></script>
 <script>
     $(".data-table").DataTable();
 </script>
