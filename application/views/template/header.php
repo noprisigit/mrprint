@@ -125,7 +125,7 @@
                                     </p>
                                 </a>
                             </li>
-                        <?php elseif ($this->session->userdata('status_access') == 'parner') : ?>
+                        <?php elseif ($this->session->userdata('status_access') == 'partner') : ?>
                             <li class="nav-item">
                                 <a href="<?= base_url('partner') ?>" class="nav-link <?= $title == "Home" ? 'active text-white' : ''; ?>">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
