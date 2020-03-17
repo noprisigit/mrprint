@@ -45,7 +45,7 @@
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <?php if($this->session->userdata('status_access') == "partner") : ?>
                         <div class="dropdown-divider"></div>    
-                        <a href="#" class="dropdown-item">
+                        <a href="<?= base_url('partner/profile'); ?>" class="dropdown-item">
                             <i class="fas fa-id-badge mr-2"></i> Profile
                         </a>
                         <?php endif; ?>
@@ -127,7 +127,7 @@
                             </li>
                         <?php elseif ($this->session->userdata('status_access') == 'partner') : ?>
                             <li class="nav-item">
-                                <a href="<?= base_url('partner') ?>" class="nav-link <?= $title == "Home" ? 'active text-white' : ''; ?>">
+                                <a href="<?= base_url('partner') ?>" class="nav-link <?= ($title == "Home" or $title == "Profile") ? 'active text-white' : ''; ?>">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Home
