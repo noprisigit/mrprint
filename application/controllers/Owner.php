@@ -77,6 +77,15 @@ class Owner extends CI_Controller
         $this->load->view('template/footer');
     }
 
+    public function add_print_shop() {
+        $header['title'] = "Print Shop";
+        $header['access'] = "Owner";
+
+        $this->load->view('template/header', $header);
+        $this->load->view('owner/add_print_shop');
+        $this->load->view('template/footer');
+    }
+
     public function verify_transaction()
     {
         $header['title'] = "Verify Transaction";
