@@ -1,7 +1,8 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <div class="row">
+        <input type="checkbox" name="status_shop" id="status_shop" value="<?= $status_toko['id_partners']; ?>" <?php if($status_toko['status_shop'] == 1) echo 'checked' ?> data-toggle="toggle" data-on="Open" data-off="Close">        
+        <div class="row mt-3">
             <div class="col">
                 <div class="card card-orange card-tabs">
                     <div class="card-header p-0 pt-1">

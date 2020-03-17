@@ -26,6 +26,9 @@
 <script src="<?= base_url('assets/'); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- Select2 -->
 <script src="<?= base_url('assets/'); ?>plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="<?= base_url('assets/'); ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -35,6 +38,9 @@
     $(".data-table").DataTable();
     $('.select2bs4').select2({
       theme: 'bootstrap4'
+    });
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
     $('.provinsi').on('change', function() {
@@ -56,6 +62,19 @@
             error: function (err) {
                 console.log(err);
             }
+        });
+    });
+
+    $('input[name="status_shop"]').on("change", function () {
+        
+        var val = $(this).val();
+        console.log(val);
+        var apply = $(this).is(':checked') ? 1 : 0;
+        console.log(apply);
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url('partner/update-status-shop'); ?>",
+            data: {val: val, apply: apply}
         });
     });
 </script>

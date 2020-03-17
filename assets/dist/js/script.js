@@ -23,5 +23,9 @@ $('.btn-detail-user').on('click', function () {
 		$('.modal-body .detail-akun').attr('value', 'Not Active');
 	else
 		$('.modal-body .detail-akun').attr('value', 'Active');
+});
 
+$('.custom-file-input').on('change', function () {
+    let filename = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').addClass('selected').html(filename);
 });
