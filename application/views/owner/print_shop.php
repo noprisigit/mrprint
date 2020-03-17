@@ -8,14 +8,16 @@
                 <thead>
                     <tr>
                         <th class="text-center">ID</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Email</th>
+                        <th class="text-center">Owner</th>
+                        <th class="text-center">Name Shop</th>
+                        <th class="text-center">Rate Average</th>
+                        <th class="text-center">Renewal</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($users as $item) : ?>
+                    <?php foreach($print_shop as $item) : ?>
                     <tr>
                         <td class="text-center"><?= $item['id_user']; ?></td>
                         <td><?= $item['full_name']; ?></td>
