@@ -143,6 +143,23 @@
                                     </p>
                                 </a>
                             </li>
+                        <?php elseif ($this->session->userdata('status_access') == 'customer') : ?>
+                            <li class="nav-item">
+                                <a href="<?= base_url('customer') ?>" class="nav-link <?= ($title == "Home" or $title == "Profile") ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Home
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('customer/transactions') ?>" class="nav-link <?= $title == "Transactions" ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon fas fa-book"></i>
+                                    <p>
+                                        Transactions
+                                    </p>
+                                </a>
+                            </li>
                         <?php endif; ?>
                     </ul>
                 </nav>
