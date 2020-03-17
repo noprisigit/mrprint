@@ -25,8 +25,10 @@ class Owner extends CI_Controller
         $header['title'] = "Users";
         $header['access'] = "Owner";
 
+        $content['users'] = $this->db->get('users')->result_array();
+
         $this->load->view('template/header', $header);
-        $this->load->view('owner/users');
+        $this->load->view('owner/users', $content);
         $this->load->view('template/footer');
     }
 
