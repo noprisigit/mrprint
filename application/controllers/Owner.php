@@ -8,6 +8,8 @@ class Owner extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('email'))
             redirect('auth');
+
+        $this->load->model('OwnerModel');
     }
 
     public function index()
@@ -68,8 +70,10 @@ class Owner extends CI_Controller
         $header['title'] = "Print Shop";
         $header['access'] = "Owner";
 
+        $content['print_shop'] = $this->OwnerModel->get_all_print_shop();
+
         $this->load->view('template/header', $header);
-        $this->load->view('owner/print_shop');
+        $this->load->view('owner/print_shop', $content);
         $this->load->view('template/footer');
     }
 

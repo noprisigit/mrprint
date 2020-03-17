@@ -1,5 +1,6 @@
 <!-- Main content -->
 <section class="content">
+    <a href="<?= base_url('owner/add-print-shop'); ?>" class="btn btn-primary mb-3">Registration Print Shop</a>
     <?= $this->session->flashdata('message'); ?>
     <div class="card">
         <!-- /.card-header -->
@@ -27,6 +28,8 @@
                         <?php else : ?>
                             <td class="text-center text-success">Active</td>
                         <?php endif; ?>
+                        <td></td>
+                        <td></td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <span data-toggle="modal" data-target="#modal-detail">
