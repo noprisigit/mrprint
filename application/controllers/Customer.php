@@ -15,8 +15,19 @@ class Customer extends CI_Controller {
 
         // $content['status_toko'] = $this->db->get_where('partners', ['id_user' => $this->session->userdata('id_user')])->row_array();
         // dd($content['status_toko']);
+        $content['provinsi'] = $this->db->get('list_provinsi')->result_array();
         $this->load->view('template/header', $header);
-        $this->load->view('customer/dashboard');
+        $this->load->view('customer/dashboard', $content);
         $this->load->view('template/footer');
+    }
+
+    public function search_print_shop_by_location() {
+        $this->db->select('*');
+        $this->db->from('partners');
+        $this->db->where('provinsi', $this->input->post('id_provinsi'));
+        $this->db->where('kabupaten', $this->input->post('id_kabupaten'));
+        $data = $this->db->get()->result_array();
+
+        echo json_encode($data);
     }
 }

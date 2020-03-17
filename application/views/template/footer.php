@@ -77,6 +77,62 @@
             data: {val: val, apply: apply}
         });
     });
+
+    $('#search-print-shop').on('change', function (){
+        var id_provinsi = $('.provinsi').val();
+        var id_kabupaten = $(this).val();
+        var url = "<?= base_url('customer/print-shop/'); ?>"
+        var url_image = "<?= base_url('assets/dist/img/print_shop/'); ?>";
+        var status_shop;
+        var color;
+
+        console.log(id_provinsi + ' ' + id_kabupaten);
+        
+
+        $.ajax({
+            url: "<?= base_url('customer/search-print-shop-by-location'); ?>",
+            type: "post",
+            data: { id_provinsi: id_provinsi, id_kabupaten: id_kabupaten },
+            dataType: "json",
+            success: function (res) {
+                $('#show-print-shop').empty();
+                if (res.length >= 1) {
+                    for (var i = 0; i < res.length; i++) {
+                        if (res[i]['status_shop'] == 0) {
+                            status_shop = "Close"
+                            color = "text-danger"
+                        } else {
+                            status_shop = "Open"
+                            color = "text-success"
+                        } 
+                        $('#show-print-shop').append(`
+                            <div class="card" style="width: 18rem;">
+                                <img src="` + url_image + res[i]['image'] + `" class="card-img-top" alt="...">
+                                <div class="card-body p-3">
+                                    <h4 class="text-orange text-bold">`+ res[i]['shop_name'] +`</h4>
+                                    <p class="card-text">` + res[i]['address'] + `</p>
+                                    <p class="text-right `+ color +` text-bold">` + status_shop + `</p>
+                                    <a href="` + url + res[i]['id_partners'] + `" class="btn btn-app float-right">
+                                        <i class="fas fa-print"></i> Print Shop
+                                    </a>
+                                    <a href="`+ res[i]['link_g_map'] +`" target="_blank" class="btn btn-app float-right">
+                                        <i class="fas fa-map-marked-alt"></i> Maps
+                                    </a>
+                                </div>
+                            </div>
+                        `);
+                    }
+                } else {
+                    $('#show-print-shop').append(
+                        '<h4 class="text-center">Belum Ada Print Shop di Daerah Ini.</h4>'
+                    );
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
 </script>
 </body>
 
