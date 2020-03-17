@@ -21,6 +21,15 @@ class Customer extends CI_Controller {
         $this->load->view('template/footer');
     }
 
+    public function print_shop($id) {
+        $header['title'] = "Printing";
+        $header['access'] = "Customer";
+
+        $this->load->view('template/header', $header);
+        $this->load->view('customer/printing');
+        $this->load->view('template/footer');
+    }
+
     public function search_print_shop_by_location() {
         $this->db->select('*');
         $this->db->from('partners');

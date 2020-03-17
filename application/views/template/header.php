@@ -145,7 +145,7 @@
                             </li>
                         <?php elseif ($this->session->userdata('status_access') == 'customer') : ?>
                             <li class="nav-item">
-                                <a href="<?= base_url('customer') ?>" class="nav-link <?= ($title == "Home" or $title == "Profile") ? 'active text-white' : ''; ?>">
+                                <a href="<?= base_url('customer') ?>" class="nav-link <?= ($title == "Home" or $title == "Printing") ? 'active text-white' : ''; ?>">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Home
