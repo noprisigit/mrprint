@@ -69,7 +69,7 @@ class Owner extends CI_Controller
         $header['access'] = "Owner";
 
         $this->load->view('template/header', $header);
-        $this->load->view('owner/dashboard');
+        $this->load->view('owner/print_shop');
         $this->load->view('template/footer');
     }
 
