@@ -7,6 +7,7 @@ class Customer extends CI_Controller {
         if(!$this->session->userdata('email')) {
             redirect('auth');
         }
+        $this->load->model('CustomerModel');
     }
 
     public function index() {
@@ -25,8 +26,10 @@ class Customer extends CI_Controller {
         $header['title'] = "Printing";
         $header['access'] = "Customer";
 
+        $content['print_shop'] = $this->CustomerModel->get_print_shop_by_id($id);
+
         $this->load->view('template/header', $header);
-        $this->load->view('customer/printing');
+        $this->load->view('customer/printing', $content);
         $this->load->view('template/footer');
     }
 
