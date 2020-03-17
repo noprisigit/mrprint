@@ -54,6 +54,15 @@ class Owner extends CI_Controller
         redirect('owner/users');
     }
 
+    public function delete_user($id) {
+        $this->db->delete('users', ['id_user'=> $id]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Account has been deleted.
+        </div>');
+        redirect('owner/users');
+    }
+
     public function print_shop()
     {
         $header['title'] = "Print Shop";
