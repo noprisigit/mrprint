@@ -29,8 +29,13 @@
                                         <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Nama Print Shop</label>
+                                        <input type="text" class="form-control" name="shop_name" value="<?= set_value('shop_name'); ?>" placeholder="Enter Print Shop Name">
+                                        <?= form_error('shop_name', '<small class="text-danger">', '</small>'); ?>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="exampleInputEmail1">Provinsi</label>
-                                        <select name="provinsi" class="form-control select2bs4 provinsi" value="<?= set_value('provinsi'); ?>" style="width: 100%;">
+                                        <select name="provinsi" class="form-control select2bs4 provinsi" style="width: 100%;">
                                             <option selected disabled>- Provinsi -</option>
                                             <?php foreach($provinsi as $item) : ?>
                                                 <option value="<?= $item['id_provinsi'] ?>"><?= $item['nama_provinsi'] ?></option>
@@ -40,7 +45,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Kabupaten</label>
-                                        <select name="kabupaten" class="form-control select2bs4 kabupaten" value="<?= set_value('kabupaten'); ?>" style="width: 100%;">
+                                        <select name="kabupaten" class="form-control select2bs4 kabupaten" style="width: 100%;">
                                             <option selected disabled>- Kabupaten/Kota -</option>
                                         </select>
                                         <?= form_error('kabupaten', '<small class="text-danger">', '</small>'); ?>
@@ -67,22 +72,16 @@
                                         <input type="number" class="form-control" name="price" value="<?= set_value('price'); ?>" placeholder="Enter Price">
                                         <?= form_error('price', '<small class="text-danger">', '</small>'); ?>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Password</label>
-                                                <input type="password" class="form-control" name="password" value="<?= set_value('password'); ?>" placeholder="Enter Password">
-                                                <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Konfirmasi Password</label>
-                                                <input type="password" class="form-control" name="confirm_password" value="<?= set_value('confirm_password'); ?>" placeholder="Enter Confirm Password">
-                                                <?= form_error('confirm_password', '<small class="text-danger">', '</small>'); ?>
-                                            </div>
-                                        </div>
-                                    </div>                                    
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Password</label>
+                                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                                        <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Konfirmasi Password</label>
+                                        <input type="password" class="form-control" name="confirm_password" placeholder="Enter Confirm Password">
+                                        <?= form_error('confirm_password', '<small class="text-danger">', '</small>'); ?>
+                                    </div>                            
                                 </div>
                             </div>
                         </div>
