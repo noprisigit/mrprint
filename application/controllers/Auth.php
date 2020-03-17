@@ -112,4 +112,19 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
+
+    public function logout() {
+        $data = [
+            'id_user',
+            'full_name',
+            'email',
+            'status_access'
+        ];
+        $this->session->unset_userdata($data);
+
+         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            You have been logout.
+        </div>');
+        redirect('auth');
+    }
 }
