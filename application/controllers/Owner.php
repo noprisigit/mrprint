@@ -81,8 +81,10 @@ class Owner extends CI_Controller
         $header['title'] = "Print Shop";
         $header['access'] = "Owner";
 
+        $content['provinsi'] = $this->db->get('list_provinsi')->result_array();
+
         $this->load->view('template/header', $header);
-        $this->load->view('owner/add_print_shop');
+        $this->load->view('owner/add_print_shop', $content);
         $this->load->view('template/footer');
     }
 
@@ -104,5 +106,11 @@ class Owner extends CI_Controller
         $this->load->view('template/header', $header);
         $this->load->view('owner/dashboard');
         $this->load->view('template/footer');
+    }
+
+    public function get_kabupaten() {
+        $data = $this->db->get_where('list_kabupaten', ['id_provinsi' => $this->input->post('id_provinsi')])->result_array();
+
+        echo json_encode($data);
     }
 }

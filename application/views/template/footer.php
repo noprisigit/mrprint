@@ -24,6 +24,8 @@
 <!-- DataTables -->
 <script src="<?= base_url('assets/'); ?>plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= base_url('assets/'); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- Select2 -->
+<script src="<?= base_url('assets/'); ?>plugins/select2/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -31,6 +33,31 @@
 <script src="<?= base_url('assets/'); ?>dist/js/script.js"></script>
 <script>
     $(".data-table").DataTable();
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    });
+
+    $('.provinsi').on('change', function() {
+        var id_provinsi = $(this).val();
+       
+        $('.kabupaten').empty();
+        $.ajax({
+            url: "<?= base_url('owner/get_kabupaten'); ?>",
+            type: "post",
+            data: { id_provinsi : id_provinsi },
+            dataType: "json",
+            success: function (res) {
+                // console.log(res);
+                $('.kabupaten').append('<option selected disabled>- Kabupaten/Kota -</option>');
+                for (var i=0; i < res.length; i++) {
+                    $('.kabupaten').append('<option value="' + res[i]['id_kabupaten'] + '">'+ res[i]['nama_kabupaten'] +'</option>');
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
 </script>
 </body>
 
