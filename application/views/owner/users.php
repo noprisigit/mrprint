@@ -7,33 +7,24 @@
             <table class="table table-bordered table-striped data-table">
                 <thead>
                     <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($users as $item) : ?>
                     <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                            Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
+                        <td><?= $item['id_user']; ?></td>
+                        <td><?= $item['full_name']; ?></td>
+                        <td><?= $item['email']; ?></td>
+                        <td><?= $item['status_account']; ?></td>
+                        <td></td>
                     </tr>
+                    <?php endforeach; ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.card-body -->
