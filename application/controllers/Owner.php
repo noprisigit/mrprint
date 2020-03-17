@@ -163,6 +163,19 @@ class Owner extends CI_Controller
         }
     }
 
+    public function edit_print_shop() {
+        $id_partner = $this->uri->segment(3);
+        $header['title'] = "Print Shop";
+        $header['access'] = "Owner";
+
+        $content['provinsi'] = $this->db->get('list_provinsi')->result_array();
+        $content['detail'] = $this->OwnerModel->get_print_shop_by_id($id_partner);
+
+        $this->load->view('template/header', $header);
+        $this->load->view('owner/edit_print_shop', $content);
+        $this->load->view('template/footer');
+    }
+
     public function verify_transaction()
     {
         $header['title'] = "Verify Transaction";
