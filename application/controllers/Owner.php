@@ -165,15 +165,42 @@ class Owner extends CI_Controller
 
     public function edit_print_shop() {
         $id_partner = $this->uri->segment(3);
+        
         $header['title'] = "Print Shop";
         $header['access'] = "Owner";
 
         $content['provinsi'] = $this->db->get('list_provinsi')->result_array();
         $content['detail'] = $this->OwnerModel->get_print_shop_by_id($id_partner);
+        $content['kabupaten'] = $this->db->get_where('list_kabupaten', ['id_provinsi' => $content['detail']['provinsi']])->result_array();
 
         $this->load->view('template/header', $header);
         $this->load->view('owner/edit_print_shop', $content);
         $this->load->view('template/footer');
+    }
+
+    public function proses_edit_print_shop() {
+        date_default_timezone_set('asia/jakarta');
+        $this->db->set('full_name', $this->input->post('owner_name'));
+        $this->db->set('email', $this->input->post('email'));
+        $this->db->set('username', $this->input->post('username'));
+        $this->db->set('date_created', date('Y-m-d H:i:sa'));
+        $this->db->where('id_user', $this->input->post('id_user'));
+        $this->db->update('users');
+
+        $this->db->set('shop_name', $this->input->post('shop_name'));
+        $this->db->set('price', $this->input->post('price'));
+        $this->db->set('provinsi', $this->input->post('provinsi'));
+        $this->db->set('kabupaten', $this->input->post('kabupaten'));
+        $this->db->set('address', $this->input->post('address'));
+        $this->db->set('link_g_map', $this->input->post('link_g_map'));
+        $this->db->set('telphone', $this->input->post('telphone'));
+        $this->db->where('id_partners', $this->input->post('id_partners'));
+        $this->db->update('partners');
+        
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Data Print Shop Has Been Updated.
+        </div>');
+        redirect('owner/print-shop');
     }
 
     public function verify_transaction()
