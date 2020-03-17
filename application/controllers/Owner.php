@@ -32,6 +32,28 @@ class Owner extends CI_Controller
         $this->load->view('template/footer');
     }
 
+    public function unblock_user($id) {
+        $this->db->set('status_account', 1);
+        $this->db->where('id_user', $id);
+        $this->db->update('users');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Account has been unblocked.
+        </div>');
+        redirect('owner/users');
+    }
+
+    public function block_user($id) {
+        $this->db->set('status_account', 0);
+        $this->db->where('id_user', $id);
+        $this->db->update('users');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Account has been blocked.
+        </div>');
+        redirect('owner/users');
+    }
+
     public function print_shop()
     {
         $header['title'] = "Print Shop";
