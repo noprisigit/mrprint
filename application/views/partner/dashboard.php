@@ -1,28 +1,153 @@
 <!-- Main content -->
 <section class="content">
-
-    <!-- Default box -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Title</h3>
-
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fas fa-minus"></i></button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fas fa-times"></i></button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card card-orange card-tabs">
+                    <div class="card-header p-0 pt-1">
+                        <ul class="nav nav-tabs navbar-orange navbar-dark" id="custom-tabs-one-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">PRINTING NOW</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">WAIT FOR PAYMENT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">WAIT FOR PICKUP</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-one-tabContent">
+                            <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                                <table class="table table-bordered data-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Customer</th>
+                                            <th class="text-center">Pick Up</th>
+                                            <th class="text-center">Pages</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <?php foreach($print_shop as $item) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $item['id_user']; ?></td>
+                                            <td><?= $item['full_name']; ?></td>
+                                            <td><?= $item['shop_name']; ?></td>
+                                            <td></td>
+                                            <td class="text-center"><?= $item['date_created'] ?></td>
+                                            <?php if($item['status_account'] == 0) : ?>
+                                                <td class="text-center text-danger">Not Active</td>
+                                            <?php else : ?>
+                                                <td class="text-center text-success">Active</td>
+                                            <?php endif; ?>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <span data-toggle="modal" data-target="#modal-detail">
+                                                        <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
+                                                    </span>
+                                                    <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
+                                                    <?php if($item['status_account'] == 0) : ?>
+                                                        <a href="<?= base_url('owner/unblock-user/'). $item['id_user']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Unblock"><i class="fas fa-check-circle"></i></a>
+                                                    <?php else: ?>
+                                                        <a href="<?= base_url('owner/block-user/'). $item['id_user']; ?>" onclick="return confirm('Anda yakin ingin memblokir akun ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Block"><i class="fas fa-ban"></i></a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                                <table class="table table-bordered data-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Customer</th>
+                                            <th class="text-center">Pick Up</th>
+                                            <th class="text-center">Pages</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <?php foreach($print_shop as $item) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $item['id_user']; ?></td>
+                                            <td><?= $item['full_name']; ?></td>
+                                            <td><?= $item['shop_name']; ?></td>
+                                            <td></td>
+                                            <td class="text-center"><?= $item['date_created'] ?></td>
+                                            <?php if($item['status_account'] == 0) : ?>
+                                                <td class="text-center text-danger">Not Active</td>
+                                            <?php else : ?>
+                                                <td class="text-center text-success">Active</td>
+                                            <?php endif; ?>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <span data-toggle="modal" data-target="#modal-detail">
+                                                        <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
+                                                    </span>
+                                                    <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
+                                                    <?php if($item['status_account'] == 0) : ?>
+                                                        <a href="<?= base_url('owner/unblock-user/'). $item['id_user']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Unblock"><i class="fas fa-check-circle"></i></a>
+                                                    <?php else: ?>
+                                                        <a href="<?= base_url('owner/block-user/'). $item['id_user']; ?>" onclick="return confirm('Anda yakin ingin memblokir akun ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Block"><i class="fas fa-ban"></i></a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+                                                        <table class="table table-bordered data-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Customer</th>
+                                            <th class="text-center">Pick Up</th>
+                                            <th class="text-center">Pages</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <?php foreach($print_shop as $item) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $item['id_user']; ?></td>
+                                            <td><?= $item['full_name']; ?></td>
+                                            <td><?= $item['shop_name']; ?></td>
+                                            <td></td>
+                                            <td class="text-center"><?= $item['date_created'] ?></td>
+                                            <?php if($item['status_account'] == 0) : ?>
+                                                <td class="text-center text-danger">Not Active</td>
+                                            <?php else : ?>
+                                                <td class="text-center text-success">Active</td>
+                                            <?php endif; ?>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <span data-toggle="modal" data-target="#modal-detail">
+                                                        <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
+                                                    </span>
+                                                    <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
+                                                    <?php if($item['status_account'] == 0) : ?>
+                                                        <a href="<?= base_url('owner/unblock-user/'). $item['id_user']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Unblock"><i class="fas fa-check-circle"></i></a>
+                                                    <?php else: ?>
+                                                        <a href="<?= base_url('owner/block-user/'). $item['id_user']; ?>" onclick="return confirm('Anda yakin ingin memblokir akun ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Block"><i class="fas fa-ban"></i></a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
             </div>
         </div>
-        <div class="card-body">
-            Start creating your amazing application!
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Footer
-        </div>
-        <!-- /.card-footer-->
     </div>
-    <!-- /.card -->
-
 </section>
 <!-- /.content -->
