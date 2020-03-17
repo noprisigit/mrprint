@@ -100,23 +100,23 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Provinsi</label>
-                            <input type="text" class="form-control detail-email" readonly>
+                            <input type="text" class="form-control detail-provinsi" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Kabupaten</label>
-                            <input type="text" class="form-control detail-username"readonly>
+                            <input type="text" class="form-control detail-kabupaten"readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Alamat</label>
-                            <input type="text" class="form-control detail-akses" readonly>
+                            <input type="text" class="form-control detail-address" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Link G-Map</label>
-                            <input type="text" class="form-control detail-akun" readonly>
+                            <input type="text" class="form-control detail-link" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Telphone</label>
-                            <input type="text" class="form-control detail-akun" readonly>
+                            <input type="text" class="form-control detail-telphone" readonly>
                         </div>
                     </div>
                 </div>
