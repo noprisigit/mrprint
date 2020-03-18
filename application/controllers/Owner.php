@@ -18,8 +18,12 @@ class Owner extends CI_Controller
         $header['title'] = "Home";
         $header['access'] = "Owner";
 
+        $content['customer'] = $this->db->where('status_access', 'customer')->count_all_results('users');
+        $content['partners'] = $this->db->where('status_access', 'partner')->count_all_results('users');
+        // dd($content['customer']);
+
         $this->load->view('template/header', $header);
-        $this->load->view('owner/dashboard');
+        $this->load->view('owner/dashboard', $content);
         $this->load->view('template/footer');
     }
 
@@ -237,8 +241,10 @@ class Owner extends CI_Controller
         $header['title'] = "Transactions";
         $header['access'] = "Owner";
 
+        $content['transactions'] = $this->OwnerModel->get_all_transactions();
+
         $this->load->view('template/header', $header);
-        $this->load->view('owner/dashboard');
+        $this->load->view('owner/transaction', $content);
         $this->load->view('template/footer');
     }
 

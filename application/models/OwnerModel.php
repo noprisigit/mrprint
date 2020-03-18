@@ -31,4 +31,15 @@ class OwnerModel extends CI_Model {
         $this->db->or_where('master_payment.status_pembayaran', 1);
         return $this->db->get()->result_array();
     }
+
+    public function get_all_transactions() {
+        $this->db->select('*');
+        $this->db->from('master_transactions');
+        $this->db->join('master_payment', 'master_payment.id_transaction = master_transactions.id_transaction');
+        $this->db->join('customers', 'customers.id_customer = master_transactions.id_customer');
+        $this->db->join('users', 'users.id_user = customers.id_user');
+        $this->db->join('partners', 'master_transactions.id_partners = partners.id_partners');
+
+        return $this->db->get()->result_array();
+    }
 }
