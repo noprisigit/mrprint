@@ -75,7 +75,7 @@
                                             <div class="btn-group">
                                                 <?php if($item['type'] == 'printing') : ?>
                                                     <?php if($item['wallet'] != 0) : ?>
-                                                        <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
+                                                        <a href="<?= base_url('customer/pay-with-wallet/') . $item['invoice']; ?>" onclick="return confirm('Anda yakin akan membayar dengan dompet ku?')" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
                                                     <?php else : ?>
                                                         <a href="#" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
                                                     <?php endif; ?>

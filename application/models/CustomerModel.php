@@ -31,4 +31,11 @@ class CustomerModel extends CI_Model {
         $this->db->where('master_transactions.id_customer', $id_customer);
         return $this->db->get()->result_array();
     }
+
+    public function get_transaction_by_invoice($invoice) {
+        $this->db->select('*');
+        $this->db->from('master_transactions');
+        $this->db->join('master_payment', 'master_transactions.id_transaction = master_payment.id_transaction');
+        return $this->db->get()->row_array();
+    }
 }

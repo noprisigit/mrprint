@@ -216,4 +216,34 @@ class Customer extends CI_Controller {
         </div>');
         redirect('customer/transactions');
     }
+
+    public function pay_with_wallet($invoice) {
+        $data = $this->CustomerModel->get_transaction_by_invoice($invoice);
+        $transaction = $this->db->get_where('master_transactions', ['invoice' => $invoice])->row_array();
+        $customer = $this->db->get_where('customers', ['id_customer' => $transaction['id_customer']])->row_array();
+
+        if ($customer['wallet'] < $data['jumlah_bayar']) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">
+                Maaf, saldo anda tidak mencukupi untuk melakukan pembayaran dengan dompet.
+            </div>');
+            redirect('customer/transactions');
+        } else {
+            $this->db->set('status_pembayaran', 2);
+            $this->db->set('bukti_bayar', 'Bayar dengan dompet');
+            $this->db->where('id_transaction', $transaction['id_transaction']);
+            $this->db->update('master_payment');
+
+            $sisa_saldo = $customer['wallet'] - $data['jumlah_bayar'];
+            $this->db->set('wallet', $sisa_saldo);
+            $this->db->where('id_customer', $customer['id_customer']);
+            $this->db->update('customers');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+                Pembayaran dengan dompet berhasil dilakukan.
+            </div>');
+            redirect('customer/transactions');
+        }
+
+        // dd($data);
+    }
 }
