@@ -80,7 +80,11 @@
                                     <?php endif; ?>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <!-- <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer"><i class="far fa-credit-card"></i></a> -->
+                                            <?php if($item['wallet'] != 0) : ?>
+                                                <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
+                                            <?php else : ?>
+                                                <a href="#" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
+                                            <?php endif; ?>
                                             <span data-toggle="modal" data-target="#modal-detail">
                                                 <button type="button" class="btn btn-info btn-detail-transaction" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer" data-id_transaction="<?= $item['id_transaction']; ?>" data-invoice="<?= $item['invoice']; ?>"><i class="far fa-credit-card"></i></button>
                                             </span>
