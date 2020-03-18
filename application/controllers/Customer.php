@@ -140,7 +140,7 @@ class Customer extends CI_Controller {
         $this->db->update('master_payment');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
-            Transaksi printing berhasil dibatalkan.
+            Bukti bayar berhasil diupload.
         </div>');
         redirect('customer/print-shop/'.$transaction['id_partners']);
     }
