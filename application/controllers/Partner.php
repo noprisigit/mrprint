@@ -17,6 +17,7 @@ class Partner extends CI_Controller {
         $header['access'] = "Partner";
 
         $content['status_toko'] = $this->db->get_where('partners', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        $content['wait_payment'] = $this->PartnerModel->get_transaction_by_payment($content['status_toko']['id_partners']);
         // dd($content['status_toko']);
         $this->load->view('template/header', $header);
         $this->load->view('partner/dashboard', $content);

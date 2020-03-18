@@ -10,4 +10,15 @@ class PartnerModel extends CI_Model {
         $this->db->where('users.id_user', $id_user);
         return $this->db->get()->row_array();
     }
+
+    public function get_transaction_by_payment($id_partner) {
+        $this->db->select('*');
+        $this->db->from('master_transactions');
+        $this->db->join('master_payment', 'master_payment.id_transaction = master_transactions.id_transaction');
+        $this->db->join('customers', 'customers.id_customer = master_transactions.id_customer');
+        $this->db->join('users', 'users.id_user = customers.id_user');
+        $this->db->where('master_transactions.id_partners', $id_partner);
+        $this->db->where('master_payment.status_pembayaran', 0);
+        return $this->db->get()->result_array();
+    }
 }
