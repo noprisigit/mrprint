@@ -106,6 +106,9 @@ class Owner extends CI_Controller
         $this->form_validation->set_rules('telphone', 'telphone', 'trim|required', [
             'required'  => 'Please fill your %s',
         ]);
+        $this->form_validation->set_rules('description', 'description', 'trim|required', [
+            'required'  => 'Please fill your %s',
+        ]);
         $this->form_validation->set_rules('price', 'price', 'trim|required', [
             'required'  => 'Please fill your %s',
         ]);
@@ -145,12 +148,13 @@ class Owner extends CI_Controller
             $partner = [
                 'id_user'           => $data['id_user'],
                 'shop_name'         => htmlspecialchars($this->input->post('shop_name'), true),
-                'price'             => htmlspecialchars($this->input->post('price'), true),
+                'price'             => $this->input->post('price'),
                 'provinsi'          => htmlspecialchars($this->input->post('provinsi'), true),
                 'kabupaten'         => htmlspecialchars($this->input->post('kabupaten'), true),
                 'address'           => htmlspecialchars($this->input->post('address'), true),
                 'link_g_map'        => htmlspecialchars($this->input->post('link_g_map'), true),
-                'telphone'           => htmlspecialchars($this->input->post('telphone'), true),
+                'telphone'          => htmlspecialchars($this->input->post('telphone'), true),
+                'description'       => htmlspecialchars($this->input->post('description'), true),
                 'image'             => 'default.jpg',
                 'status_shop'       => 0,
             ];
