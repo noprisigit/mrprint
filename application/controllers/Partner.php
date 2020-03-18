@@ -141,4 +141,30 @@ class Partner extends CI_Controller {
         </div>');
         redirect('partner');
     }
+
+    public function report_virus($invoice) {
+        $transaction = $this->db->get_where('master_transactions', ['invoice' => $invoice ])->row_array();
+        $this->db->insert('log_report', [
+            'id_transaction'    => $transaction['id_transaction'],
+            'keterangan'        => 'File corrupt atau mengandung virus'
+        ]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center mt-3" role="alert">
+           Log report berhasil ditambahkan.
+        </div>');
+        redirect('partner');
+    }
+
+    public function report_page($invoice) {
+        $transaction = $this->db->get_where('master_transactions', ['invoice' => $invoice ])->row_array();
+        $this->db->insert('log_report', [
+            'id_transaction'    => $transaction['id_transaction'],
+            'keterangan'        => 'Jumlah halaman tidak sesuai'
+        ]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center mt-3" role="alert">
+           Log report berhasil ditambahkan.
+        </div>');
+        redirect('partner');
+    }
+
+    
 }

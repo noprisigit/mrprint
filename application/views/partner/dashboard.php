@@ -43,7 +43,8 @@
                                                         <button type="button" class="btn btn-info btn-download-file" data-toggle="tooltip" data-placement="top" title="Download" data-keterangan="<?= $item['komentar']; ?>" data-nama_file="<?= $item['nama_file']; ?>"><i class="fas fa-cloud-download-alt"></i></button>
                                                     </span>
                                                     <a href="<?= base_url('partner/update-status-printing/').$item['invoice']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Printing Selesai"><i class="fas fa-check-circle"></i></a>
-                                                    <button type="button" class="btn btn-info"><i class="fas fa-align-right"></i></button>
+                                                    <a href="<?= base_url('partner/report-page/').$item['invoice']; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Jumlah Halaman Tidak Sesuai"><i class="fas fa-exclamation-circle"></i></a>
+                                                    <a href="<?= base_url('partner/report-virus/').$item['invoice']; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="File Corrupt atau Mengandung Virus"><i class="fas fa-bug"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
