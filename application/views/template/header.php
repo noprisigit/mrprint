@@ -70,7 +70,7 @@
             <!-- Brand Logo -->
             <a href="../../index3.html" class="brand-link <?php if ($this->session->userdata('status_access') == "owner") : ?> navbar-primary <?php else : ?>  navbar-orange <?php endif; ?>">
                 <img src="<?= base_url('assets/'); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light text-white">AdminLTE 3</span>
+                <span class="brand-text font-weight-light text-white">mr.perint</span>
             </a>
 
             <!-- Sidebar -->
