@@ -39,6 +39,18 @@ class Partner extends CI_Controller {
         $this->load->view('template/footer');
     }
 
+    public function transactions() {
+        $header['title'] = "Transactions";
+        $header['access'] = "Partner";
+
+        $partner = $this->db->get_where('partners', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        $content['transactions'] = $this->PartnerModel->get_all_transactions($partner['id_partners']);
+
+        $this->load->view('template/header', $header);
+        $this->load->view('partner/transaction', $content);
+        $this->load->view('template/footer');
+    }
+
     public function change_password() {
         $this->db->set('password', password_hash($this->input->post('password'), PASSWORD_DEFAULT));
         $this->db->where('id_user', $this->session->userdata('id_user'));

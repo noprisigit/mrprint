@@ -161,6 +161,25 @@
         ],
         fixedColumns: true
     });
+
+    $('#partner-transaction').DataTable({
+        scrollY:        true,
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         true,
+        columnDefs: [
+            { width: '5px', targets: 0 },
+            { width: '150px', targets: [1,2] },
+            { width: '130px', targets: 3 },
+            { width: '50px', targets: 4 },
+            { width: '100px', targets: 5 },
+            { width: '130px', targets: 6 },
+            { width: '70px', targets: 7 },
+            { width: '130px', targets: 8 },
+
+        ],
+        fixedColumns: true
+    });
 </script>
 </body>
 
