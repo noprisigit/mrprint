@@ -217,6 +217,7 @@ class Owner extends CI_Controller
         $header['access'] = "Owner";
 
         $content['verify_transaction'] = $this->OwnerModel->get_all_transaction_by_payment();
+        $content['verify_wallet'] = $this->OwnerModel->get_wallet_transaction();
         // dd($content['verify_transaction']);
 
         $this->load->view('template/header', $header);

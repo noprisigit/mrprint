@@ -13,9 +13,9 @@
                                     <th class="text-center">ID</th>
                                     <th class="text-center">Invoice</th>
                                     <th class="text-center">Nama Customer</th>
-                                    <th class="text-center">Nama Print Shop</th>
+                                    <!-- <th class="text-center">Nama Print Shop</th> -->
                                     <th class="text-center">Status Pembayaran</th>
-                                    <th class="text-center">Status Printing</th>
+                                    <th class="text-center">Type</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,7 +27,7 @@
                                     <td class="text-center"><?= $no; ?></td>
                                     <td><?= $item['invoice']; ?></td>
                                     <td><?= $item['full_name']; ?></td>
-                                    <td><?= $item['shop_name']; ?></td>
+                                    <!-- <td><?= $item['shop_name']; ?></td> -->
                                     <?php if($item['status_pembayaran'] == 0) : ?>
                                         <td class="text-danger text-center">Waiting for Payment</td>
                                     <?php elseif($item['status_pembayaran'] == 1) : ?>
@@ -35,8 +35,8 @@
                                     <?php else : ?>
                                         <td class="text-success text-center">Payment Accepted</td>
                                     <?php endif; ?>
-
-                                    <?php if($item['status_pembayaran'] == 0) : ?>
+                                    <td class="text-center"><?= $item['type']; ?></td>
+                                    <!-- <?php if($item['status_pembayaran'] == 0) : ?>
                                         <td class="text-danger text-center">Waiting for Payment</td>
                                     <?php elseif($item['status_pembayaran'] == 1) : ?>
                                         <td class="text-danger text-center">Waiting for Verification</td>
@@ -44,7 +44,7 @@
                                         <td class="text-warning text-center">Waiting for Printing</td>
                                     <?php elseif($item['status_pembayaran'] == 2 && $item['status_printing'] == 1) : ?>
                                         <td class="text-warning text-center">Printing Done</td>
-                                    <?php endif; ?>
+                                    <?php endif; ?> -->
                                 </tr>
                                 <?php
                                     $no++; 
