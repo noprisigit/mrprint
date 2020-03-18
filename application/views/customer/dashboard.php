@@ -35,8 +35,10 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-body" id="show-print-shop">
+                    <div class="card-body">
+                        <div class="row" id="show-print-shop">
                         
+                        </div>
                     </div>
                 </div>
             </div>

@@ -107,18 +107,20 @@
                             color = "text-success"
                         } 
                         $('#show-print-shop').append(`
-                            <div class="card" style="width: 18rem;">
-                                <img src="` + url_image + res[i]['image'] + `" class="card-img-top" alt="...">
-                                <div class="card-body p-3">
-                                    <h4 class="text-orange text-bold">`+ res[i]['shop_name'] +`</h4>
-                                    <p class="card-text">` + res[i]['address'] + `</p>
-                                    <p class="text-right `+ color +` text-bold">` + status_shop + `</p>
-                                    <a href="` + url + res[i]['id_partners'] + `" class="btn btn-app float-right">
-                                        <i class="fas fa-print"></i> Print Shop
-                                    </a>
-                                    <a href="`+ res[i]['link_g_map'] +`" target="_blank" class="btn btn-app float-right">
-                                        <i class="fas fa-map-marked-alt"></i> Maps
-                                    </a>
+                            <div class="col-md-4">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="` + url_image + res[i]['image'] + `" class="card-img-top" alt="...">
+                                    <div class="card-body p-3">
+                                        <h4 class="text-orange text-bold">`+ res[i]['shop_name'] +`</h4>
+                                        <p class="card-text">` + res[i]['address'] + `</p>
+                                        <p class="text-right `+ color +` text-bold">` + status_shop + `</p>
+                                        <a href="` + url + res[i]['id_partners'] + `" class="btn btn-app float-right">
+                                            <i class="fas fa-print"></i> Print Shop
+                                        </a>
+                                        <a href="`+ res[i]['link_g_map'] +`" target="_blank" class="btn btn-app float-right">
+                                            <i class="fas fa-map-marked-alt"></i> Maps
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         `);
