@@ -18,6 +18,8 @@ class Partner extends CI_Controller {
 
         $content['status_toko'] = $this->db->get_where('partners', ['id_user' => $this->session->userdata('id_user')])->row_array();
         $content['wait_payment'] = $this->PartnerModel->get_transaction_by_payment($content['status_toko']['id_partners']);
+        $content['wait_printing'] = $this->PartnerModel->get_transaction_by_printing($content['status_toko']['id_partners']);
+        $content['wait_pickup'] = $this->PartnerModel->get_transaction_by_pickup($content['status_toko']['id_partners']);
         // dd($content['status_toko']);
         $this->load->view('template/header', $header);
         $this->load->view('partner/dashboard', $content);
@@ -109,5 +111,22 @@ class Partner extends CI_Controller {
         $this->db->set('status_shop', $this->input->post('apply'));
         $this->db->where('id_partners', $this->input->post('val'));
         $this->db->update('partners');
+    }
+
+    public function download_file() {
+        $file = $this->input->get('file');
+        $this->load->helper('download');
+        force_download('./assets/dist/file/'.$file, NULL);
+    }
+
+    public function update_status_printing($invoice) {
+        $this->db->set('status_printing', 1);
+        $this->db->where('invoice', $invoice);
+        $this->db->update('master_transactions');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center mt-3" role="alert">
+            Printing selesai dilakukan.
+        </div>');
+        redirect('partner');
     }
 }

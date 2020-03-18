@@ -2,6 +2,7 @@
 <section class="content">
     <div class="container-fluid">
         <input type="checkbox" name="status_shop" id="status_shop" value="<?= $status_toko['id_partners']; ?>" <?php if($status_toko['status_shop'] == 1) echo 'checked' ?> data-toggle="toggle" data-on="Open" data-off="Close">        
+        <?= $this->session->flashdata('message'); ?>
         <div class="row mt-3">
             <div class="col">
                 <div class="card card-orange card-tabs">
@@ -31,33 +32,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <?php foreach($print_shop as $item) : ?>
+                                        <?php foreach($wait_printing as $item) : ?>
                                         <tr>
-                                            <td class="text-center"><?= $item['id_user']; ?></td>
                                             <td><?= $item['full_name']; ?></td>
-                                            <td><?= $item['shop_name']; ?></td>
-                                            <td></td>
-                                            <td class="text-center"><?= $item['date_created'] ?></td>
-                                            <?php if($item['status_account'] == 0) : ?>
-                                                <td class="text-center text-danger">Not Active</td>
-                                            <?php else : ?>
-                                                <td class="text-center text-success">Active</td>
-                                            <?php endif; ?>
+                                            <td class="text-center"><?= $item['tgl_pengambilan']; ?> <?= $item['jam_pengambilan']; ?></td>
+                                            <td class="text-center"><?= $item['jumlah_halaman']; ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <span data-toggle="modal" data-target="#modal-detail">
-                                                        <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
+                                                    <span data-toggle="modal" data-target="#modal-download">
+                                                        <button type="button" class="btn btn-info btn-download-file" data-toggle="tooltip" data-placement="top" title="Download" data-keterangan="<?= $item['komentar']; ?>" data-nama_file="<?= $item['nama_file']; ?>"><i class="fas fa-cloud-download-alt"></i></button>
                                                     </span>
-                                                    <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
-                                                    <?php if($item['status_account'] == 0) : ?>
-                                                        <a href="<?= base_url('owner/unblock-user/'). $item['id_user']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Unblock"><i class="fas fa-check-circle"></i></a>
-                                                    <?php else: ?>
-                                                        <a href="<?= base_url('owner/block-user/'). $item['id_user']; ?>" onclick="return confirm('Anda yakin ingin memblokir akun ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Block"><i class="fas fa-ban"></i></a>
-                                                    <?php endif; ?>
+                                                    <a href="<?= base_url('partner/update-status-printing/').$item['invoice']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Printing Selesai"><i class="fas fa-check-circle"></i></a>
+                                                    <button type="button" class="btn btn-info"><i class="fas fa-align-right"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <?php endforeach; ?> -->
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -96,37 +86,16 @@
                                             <th class="text-center">Customer</th>
                                             <th class="text-center">Pick Up</th>
                                             <th class="text-center">Pages</th>
-                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <?php foreach($print_shop as $item) : ?>
+                                        <?php foreach($wait_pickup as $item) : ?>
                                         <tr>
-                                            <td class="text-center"><?= $item['id_user']; ?></td>
                                             <td><?= $item['full_name']; ?></td>
-                                            <td><?= $item['shop_name']; ?></td>
-                                            <td></td>
-                                            <td class="text-center"><?= $item['date_created'] ?></td>
-                                            <?php if($item['status_account'] == 0) : ?>
-                                                <td class="text-center text-danger">Not Active</td>
-                                            <?php else : ?>
-                                                <td class="text-center text-success">Active</td>
-                                            <?php endif; ?>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <span data-toggle="modal" data-target="#modal-detail">
-                                                        <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
-                                                    </span>
-                                                    <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
-                                                    <?php if($item['status_account'] == 0) : ?>
-                                                        <a href="<?= base_url('owner/unblock-user/'). $item['id_user']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Unblock"><i class="fas fa-check-circle"></i></a>
-                                                    <?php else: ?>
-                                                        <a href="<?= base_url('owner/block-user/'). $item['id_user']; ?>" onclick="return confirm('Anda yakin ingin memblokir akun ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Block"><i class="fas fa-ban"></i></a>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </td>
+                                            <td class="text-center"><?= $item['tgl_pengambilan']; ?> <?= $item['jam_pengambilan']; ?></td>
+                                            <td class="text-center"><?= $item['jumlah_halaman']; ?></td>
                                         </tr>
-                                        <?php endforeach; ?> -->
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -139,3 +108,26 @@
     </div>
 </section>
 <!-- /.content -->
+
+<div class="modal fade show" id="modal-download" aria-modal="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Download File</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Comment :</p>
+                <p class="comment"></p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <a  class="btn btn-primary link-download">Download</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

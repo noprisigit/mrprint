@@ -134,6 +134,12 @@
             }
         });
     });
+
+    $('.btn-download-file').on('click', function () {
+        var url = "<?= base_url('partner/download-file?file=') ?>"
+        $('.comment').html($(this).data('keterangan'));
+        $('.link-download').attr('href', url + $(this).data('nama_file'));
+    });
 </script>
 </body>
 
