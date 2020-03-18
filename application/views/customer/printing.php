@@ -57,7 +57,10 @@
                                 <?php foreach($transactions as $item) : ?>
                                 <tr>
                                     <td><?= $item['invoice']; ?></td>
-                                    <td class="text-center"><?= $item['jumlah_bayar']; ?></td>
+                                    <?php
+                                        $hasil_rupiah = "Rp " . number_format($item['jumlah_bayar'],2,',','.');
+                                    ?>
+                                    <td class="text-center"><?= $hasil_rupiah; ?></td>
                                     <?php if ($item['status_pembayaran'] == 0) : ?>
                                         <td class="text-center text-danger">Waiting for Payment</td>
                                     <?php elseif ($item['status_pembayaran'] == 1) : ?>
@@ -77,10 +80,10 @@
                                     <?php endif; ?>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <!-- <span data-toggle="modal" data-target="#modal-detail">
-                                                <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
-                                            </span> -->
-                                            <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
+                                            <!-- <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer"><i class="far fa-credit-card"></i></a> -->
+                                            <span data-toggle="modal" data-target="#modal-detail">
+                                                <button type="button" class="btn btn-info btn-detail-transaction" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer" data-id_transaction="<?= $item['id_transaction']; ?>" data-invoice="<?= $item['invoice']; ?>"><i class="far fa-credit-card"></i></button>
+                                            </span>
                                             <a href="<?= base_url('customer/cancel-transaction/') . $item['invoice'] ?>" onclick="return confirm('Anda yakin ingin membatalkan transaksi ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Cancel Printing"><i class="fas fa-window-close"></i></a>
                                         </div>
                                     </td>
@@ -115,3 +118,50 @@
     </div>
 </section>
 <!-- /.content -->
+
+<div class="modal fade" id="modal-detail" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">Payment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Lakukan pembayaran ke nomor rekening berikut : </p>
+                <p class="text-bold">BNI : 08023490932</p>
+                <p>
+                    Apabila sudah melakukan pembayaran dan belum terverifikasi oleh sistem, 
+                    anda dapat mengirim bukti pembayaran dibawah dengan menyertakan (Invoice).
+                </p>
+                <?= form_open_multipart('customer/upload-bukti-bayar'); ?>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" name="id_transaction">
+                        <div class="form-group">
+                            <label for="">Select File</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="bukti_bayar" required>
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Invoice Number</label>
+                            <input type="text" name="invoice_number" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

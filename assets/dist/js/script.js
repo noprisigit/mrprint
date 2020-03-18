@@ -47,3 +47,10 @@ $('form[name="transaction_printing"]').validate({
 		form.submit();
 	}
 });
+
+$('.btn-detail-transaction').on('click', function () {
+	$('.modal-body input[name="id_transaction"]').empty();
+	$('.modal-body input[name="invoice_number"]').empty();
+	$('.modal-body input[name="id_transaction"]').attr('value', $(this).data('id_transaction'));
+	$('.modal-body input[name="invoice_number"]').attr('value', $(this).data('invoice'));
+});

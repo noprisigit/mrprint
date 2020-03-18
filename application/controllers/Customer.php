@@ -53,6 +53,8 @@ class Customer extends CI_Controller {
         $customer = $this->db->get_where('customers', ['id_user' => $this->session->userdata('id_user')])->row_array();
         $partner = $this->db->get_where('partners', ['id_partners' => $this->input->post('id_partners')])->row_array();
         $invoice = date('YmdHis') . $customer['id_customer'] . $partner['id_partners'];
+        $jumlah_bayar = $this->input->post('jmlh_halaman') * $partner['price'];
+
         $file = $_FILES['file']['name'];
 
         if ($file) {
@@ -92,7 +94,7 @@ class Customer extends CI_Controller {
 
         $payment = [
             'id_transaction'    => $data['id_transaction'],
-            'jumlah_bayar'      => 0,
+            'jumlah_bayar'      => $jumlah_bayar,
             'status_pembayaran' => 0
         ];
         $this->db->insert('master_payment', $payment);
