@@ -185,6 +185,35 @@ class Customer extends CI_Controller {
             Permintaan pengisian dompet berhasil dilakukan.
         </div>');
         redirect('customer/transactions');
+    }
 
+    public function bayar() {
+        $bukti_bayar = $_FILES['bukti_bayar']['name'];
+        $transaction = $this->db->get_where('master_transactions', ['invoice' => $this->input->post('invoice_number')])->row_array();
+
+        if ($bukti_bayar) {
+            $config['upload_path']          = './assets/dist/img/bukti_bayar/';
+            $config['allowed_types']        = 'png|jpg|jpeg';
+            $config['max_size']             = 2048;
+            $config['file_name']            = $this->input->post('invoice_number');
+            
+            $this->load->library('upload', $config);
+            
+            if($this->upload->do_upload('bukti_bayar')) {
+                $nama_file = $this->upload->data('file_name');
+                $this->db->set('bukti_bayar', $nama_file);
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+
+        $this->db->set('status_pembayaran', 1);
+        $this->db->where('id_transaction', $this->input->post('id_transaction'));
+        $this->db->update('master_payment');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Bukti bayar berhasil diupload.
+        </div>');
+        redirect('customer/transactions');
     }
 }

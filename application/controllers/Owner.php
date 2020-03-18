@@ -246,8 +246,9 @@ class Owner extends CI_Controller
         $this->db->update('master_payment');
 
         $data_wallet = $this->db->get_where('master_payment', ['id_transaction' => $data['id_transaction']])->row_array();
+        $isi = $customer['wallet'] + $data_wallet['jumlah_bayar'];
 
-        $this->db->set('wallet', $data_wallet['jumlah_bayar']);
+        $this->db->set('wallet', $isi);
         $this->db->where('id_customer', $data['id_customer']);
         $this->db->update('customers');
 

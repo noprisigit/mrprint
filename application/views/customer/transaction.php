@@ -60,17 +60,32 @@
                                     <?php endif; ?>
                                     <td class="text-center"><?= $item['type']; ?></td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <?php if($item['wallet'] != 0) : ?>
-                                                <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
-                                            <?php else : ?>
-                                                <a href="#" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
-                                            <?php endif; ?>
-                                            <span data-toggle="modal" data-target="#modal-detail">
-                                                <button type="button" class="btn btn-info btn-detail-transaction" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer" data-id_transaction="<?= $item['id_transaction']; ?>" data-invoice="<?= $item['invoice']; ?>"><i class="far fa-credit-card"></i></button>
-                                            </span>
-                                            <a href="<?= base_url('customer/cancel-transaction/') . $item['invoice'] ?>" onclick="return confirm('Anda yakin ingin membatalkan transaksi ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Cancel"><i class="fas fa-window-close"></i></a>
-                                        </div>
+                                        <?php if($item['status_pembayaran'] == 2 && $item['type'] == 'printing') : ?>
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>                                                
+                                                <button type="button" disabled class="btn btn-info disabled btn-detail-transaction" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer" data-id_transaction="<?= $item['id_transaction']; ?>" data-invoice="<?= $item['invoice']; ?>"><i class="far fa-credit-card"></i></button>                                            
+                                                <a href="<?= base_url('customer/cancel-transaction/') . $item['invoice'] ?>" onclick="return confirm('Anda yakin ingin membatalkan transaksi ini ?')" class="btn btn-danger disabled" data-toggle="tooltip" data-placement="top" title="Cancel"><i class="fas fa-window-close"></i></a>
+                                            </div>
+                                        <?php elseif($item['status_pembayaran'] == 2 && $item['type'] == 'top-up') : ?>
+                                            <div class="btn-group">
+                                                <button type="button" disabled class="btn btn-info disabled btn-detail-transaction" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer" data-id_transaction="<?= $item['id_transaction']; ?>" data-invoice="<?= $item['invoice']; ?>"><i class="far fa-credit-card"></i></button>                                            
+                                                <a href="<?= base_url('customer/cancel-transaction/') . $item['invoice'] ?>" onclick="return confirm('Anda yakin ingin membatalkan transaksi ini ?')" class="btn btn-danger disabled" data-toggle="tooltip" data-placement="top" title="Cancel"><i class="fas fa-window-close"></i></a>
+                                            </div>
+                                        <?php else :  ?>
+                                            <div class="btn-group">
+                                                <?php if($item['type'] == 'printing') : ?>
+                                                    <?php if($item['wallet'] != 0) : ?>
+                                                        <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
+                                                    <?php else : ?>
+                                                        <a href="#" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                                <span data-toggle="modal" data-target="#modal-detail">
+                                                    <button type="button" class="btn btn-info btn-detail-transaction" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer" data-id_transaction="<?= $item['id_transaction']; ?>" data-invoice="<?= $item['invoice']; ?>"><i class="far fa-credit-card"></i></button>
+                                                </span>
+                                                <a href="<?= base_url('customer/cancel-transaction/') . $item['invoice'] ?>" onclick="return confirm('Anda yakin ingin membatalkan transaksi ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Cancel"><i class="fas fa-window-close"></i></a>
+                                            </div>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -103,7 +118,7 @@
                     Apabila sudah melakukan pembayaran dan belum terverifikasi oleh sistem, 
                     anda dapat mengirim bukti pembayaran dibawah dengan menyertakan (Invoice).
                 </p>
-                <?= form_open_multipart('customer/upload-bukti-bayar'); ?>
+                <?= form_open_multipart('customer/bayar'); ?>
                 <div class="row">
                     <div class="col-md-6">
                         <input type="hidden" name="id_transaction">
