@@ -23,6 +23,15 @@ class Customer extends CI_Controller {
         $this->load->view('template/footer');
     }
 
+    public function transactions() {
+        $header['title'] = "Transactions";
+        $header['access'] = "Customer";
+
+        $this->load->view('template/header', $header);
+        $this->load->view('customer/transaction');
+        $this->load->view('template/footer');
+    }
+
     public function print_shop() {
         $id = $this->uri->segment(3);
         $header['title'] = "Printing";
