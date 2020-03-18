@@ -42,6 +42,52 @@
                                 </div>
                             </div>
                         </form>
+                        <br>
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Invoice</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Transactions</th>
+                                    <th class="text-center">Printing</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($transactions as $item) : ?>
+                                <tr>
+                                    <td><?= $item['invoice']; ?></td>
+                                    <td class="text-center"><?= $item['jumlah_bayar']; ?></td>
+                                    <?php if ($item['status_pembayaran'] == 0) : ?>
+                                        <td class="text-center text-danger">Waiting for Payment</td>
+                                    <?php elseif ($item['status_pembayaran'] == 1) : ?>
+                                        <td class="text-center text-warning">Waiting for Verification</td>
+                                    <?php else: ?>
+                                        <td class="text-center text-success">Payment Accepted</td>
+                                    <?php endif; ?>
+                                
+                                    <?php if($item['status_pembayaran'] == 0) : ?>
+                                        <td class="text-center text-danger">Waiting for Payment</td>
+                                    <?php elseif ($item['status_pembayaran'] == 1) : ?>
+                                        <td class="text-center text-warning">Waiting for Verification</td>
+                                    <?php elseif ($item['status_pembayaran'] == 2 && $item['status_printing'] == 0) : ?>
+                                        <td class="text-center text-warning">Waiting for Printing</td>
+                                    <?php elseif ($item['status_pembayaran'] == 2 && $item['status_printing'] == 1) : ?>
+                                        <td class="text-center text-success">Printing Done</td>
+                                    <?php endif; ?>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <!-- <span data-toggle="modal" data-target="#modal-detail">
+                                                <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
+                                            </span> -->
+                                            <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
+                                            <a href="<?= base_url('customer/cancel-transaction/') . $item['invoice'] ?>" onclick="return confirm('Anda yakin ingin membatalkan transaksi ini ?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Cancel Printing"><i class="fas fa-window-close"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

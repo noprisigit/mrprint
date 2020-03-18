@@ -28,8 +28,11 @@ class Customer extends CI_Controller {
         $header['title'] = "Printing";
         $header['access'] = "Customer";
 
+        $customer = $this->db->get_where('customers', ['id_user' => $this->session->userdata('id_user')])->row_array();
         $content['print_shop'] = $this->CustomerModel->get_print_shop_by_id($id);
-
+        // dd($content['print_shop']);
+        $content['transactions'] = $this->CustomerModel->get_transaction_customer_partner($customer['id_customer'], $content['print_shop']['id_partners']);
+        // dd($content['transactions']);
         $this->load->view('template/header', $header);
         $this->load->view('customer/printing', $content);
         $this->load->view('template/footer');
@@ -98,5 +101,15 @@ class Customer extends CI_Controller {
             Transaksi printing berhasil ditambahkan.
         </div>');
         redirect('customer/print-shop/'.$this->input->post('id_partners'));
+    }
+
+    public function cancel_transaction($invoice) {
+        $data = $this->db->get_where('master_transactions', ['invoice' => $invoice])->row_array();
+        $this->db->delete('master_transactions', ['invoice' => $invoice]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Transaksi printing berhasil dibatalkan.
+        </div>');
+        redirect('customer/print-shop/'.$data['id_partners']);
     }
 }

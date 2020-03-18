@@ -10,4 +10,13 @@ class CustomerModel extends CI_Model {
         $this->db->where('partners.id_partners', $id);
         return $this->db->get()->row_array();
     }
+
+    public function get_transaction_customer_partner($id_customer, $id_partner) {
+        $this->db->select('*');
+        $this->db->from('master_transactions');
+        $this->db->join('master_payment', 'master_payment.id_transaction = master_transactions.id_transaction');
+        $this->db->where('master_transactions.id_customer', $id_customer);
+        $this->db->where('master_transactions.id_partners', $id_partner);
+        return $this->db->get()->result_array();
+    }
 }
