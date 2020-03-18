@@ -212,9 +212,24 @@ class Owner extends CI_Controller
         $header['title'] = "Verify Transaction";
         $header['access'] = "Owner";
 
+        $content['verify_transaction'] = $this->OwnerModel->get_all_transaction_by_payment();
+        // dd($content['verify_transaction']);
+
         $this->load->view('template/header', $header);
-        $this->load->view('owner/dashboard');
+        $this->load->view('owner/verify_transaction', $content);
         $this->load->view('template/footer');
+    }
+
+    public function verify($invoice) {
+        $data = $this->db->get_where('master_transactions', ['invoice' => $invoice])->row_array();
+        $this->db->set('status_pembayaran', 2);
+        $this->db->where('id_transaction', $data['id_transaction']);
+        $this->db->update('master_payment');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Pembayaran berhasil diverifikasi.
+        </div>');
+        redirect('owner/verify-transaction');
     }
 
     public function transactions()

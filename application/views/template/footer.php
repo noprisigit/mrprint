@@ -140,6 +140,27 @@
         $('.comment').html($(this).data('keterangan'));
         $('.link-download').attr('href', url + $(this).data('nama_file'));
     });
+
+    $('.btn-show-bukti').on('click', function () {
+        $('.modal-body img').attr('src', "<?= base_url('assets/dist/img/bukti_bayar/'); ?>" + $(this).data('bukti'));
+    });
+
+    $('#table-verify').DataTable({
+        scrollY:        true,
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         true,
+        columnDefs: [
+            { width: '5px', targets: 0 },
+            { width: '150px', targets: [1,2] },
+            { width: '130px', targets: 3 },
+            { width: '120px', targets: 4 },
+            { width: '70px', targets: [5,6] },
+            { width: '100px', targets: [7,8] },
+
+        ],
+        fixedColumns: true
+    });
 </script>
 </body>
 
