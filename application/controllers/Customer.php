@@ -29,8 +29,9 @@ class Customer extends CI_Controller {
 
         $customer = $this->db->get_where('customers', ['id_user' => $this->session->userdata('id_user')])->row_array();
         $content['transactions'] = $this->CustomerModel->get_all_transactions($customer['id_customer']);
+        // dd($content['transactions']);
         $content['wallet'] = $customer['wallet'];
-        
+
         $this->load->view('template/header', $header);
         $this->load->view('customer/transaction', $content);
         $this->load->view('template/footer');
@@ -156,5 +157,34 @@ class Customer extends CI_Controller {
             Bukti bayar berhasil diupload.
         </div>');
         redirect('customer/print-shop/'.$transaction['id_partners']);
+    }
+
+    public function isi_dompet() {
+        date_default_timezone_set('Asia/Jakarta');
+        $customer = $this->db->get_where('customers', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        $invoice = date('YmdHis') . $customer['id_customer'];
+        $wallet = [
+            'id_customer'   => $customer['id_customer'],
+            'invoice'       => "TOP-".$invoice,
+            'type'          => "top-up",
+            'date_created'  => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('master_transactions', $wallet);
+
+        $data = $this->db->get_where('master_transactions', ['invoice' => "TOP-".$invoice])->row_array();
+
+        $payment = [
+            'id_transaction'        => $data['id_transaction'],
+            'jumlah_bayar'          => $this->input->post('wallet'),
+            'status_pembayaran'     => 0  
+        ];
+
+        $this->db->insert('master_payment', $payment);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Permintaan pengisian dompet berhasil dilakukan.
+        </div>');
+        redirect('customer/transactions');
+
     }
 }

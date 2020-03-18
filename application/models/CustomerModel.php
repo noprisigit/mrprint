@@ -26,6 +26,8 @@ class CustomerModel extends CI_Model {
         $this->db->from('master_transactions');
         $this->db->join('master_payment', 'master_payment.id_transaction = master_transactions.id_transaction');
         $this->db->join('customers', 'master_transactions.id_customer = customers.id_customer');
+        // $this->db->join('transaksi_wallet', 'transaksi_wallet.id_customer = customers.id_customer');
+        // $this->db->join('wallet_payment', 'wallet_payment.id_transaksi_wallet = transaksi_wallet.id_transaksi_wallet');
         $this->db->where('master_transactions.id_customer', $id_customer);
         return $this->db->get()->result_array();
     }
