@@ -7,6 +7,32 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info"><i class="fas fa-wallet"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Dompet Ku :</span>
+                                        <?php
+                                            $hasil_rupiah = "Rp " . number_format($wallet,2,',','.');
+                                        ?>
+                                        <span class="info-box-number"><?= $hasil_rupiah; ?></span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+                            <div class="col-md-4">
+                                <form action="<?= base_url('customer/isi-dompet') ?>" method="post">
+                                    <div class="form-group">
+                                        <label for="">Isi Dompet</label>
+                                        <input type="number" name="wallet" id="wallet" placeholder="Jumlah" class="form-control">
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-block" id="btn-isi-dompet" disabled>Isi Dompet</button>
+                                </form>
+                            </div>
+                        </div>
                         <table class="table table-bordered data-table">
                             <thead>
                                 <tr>
@@ -35,7 +61,11 @@
                                     <td class="text-center"><?= $item['type']; ?></td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <!-- <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer"><i class="far fa-credit-card"></i></a> -->
+                                            <?php if($item['wallet'] != 0) : ?>
+                                                <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
+                                            <?php else : ?>
+                                                <a href="#" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="top" title="Bayar dengan dompet"><i class="fas fa-wallet"></i></a>
+                                            <?php endif; ?>
                                             <span data-toggle="modal" data-target="#modal-detail">
                                                 <button type="button" class="btn btn-info btn-detail-transaction" data-toggle="tooltip" data-placement="top" title="Bayar dengan Transfer" data-id_transaction="<?= $item['id_transaction']; ?>" data-invoice="<?= $item['invoice']; ?>"><i class="far fa-credit-card"></i></button>
                                             </span>

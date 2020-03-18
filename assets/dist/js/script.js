@@ -54,3 +54,10 @@ $('.btn-detail-transaction').on('click', function () {
 	$('.modal-body input[name="id_transaction"]').attr('value', $(this).data('id_transaction'));
 	$('.modal-body input[name="invoice_number"]').attr('value', $(this).data('invoice'));
 });
+
+$('#wallet').keyup(function () {
+	if ($(this).val().length != 0)
+		$('#btn-isi-dompet').attr('disabled', false);
+	else
+		$('#btn-isi-dompet').attr('disabled', true);
+});

@@ -29,7 +29,8 @@ class Customer extends CI_Controller {
 
         $customer = $this->db->get_where('customers', ['id_user' => $this->session->userdata('id_user')])->row_array();
         $content['transactions'] = $this->CustomerModel->get_all_transactions($customer['id_customer']);
-
+        $content['wallet'] = $customer['wallet'];
+        
         $this->load->view('template/header', $header);
         $this->load->view('customer/transaction', $content);
         $this->load->view('template/footer');
