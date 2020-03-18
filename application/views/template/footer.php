@@ -29,6 +29,7 @@
 <!-- Bootstrap Switch -->
 <script src="<?= base_url('assets/'); ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

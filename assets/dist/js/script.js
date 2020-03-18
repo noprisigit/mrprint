@@ -26,6 +26,24 @@ $('.btn-detail-user').on('click', function () {
 });
 
 $('.custom-file-input').on('change', function () {
-    let filename = $(this).val().split('\\').pop();
-    $(this).next('.custom-file-label').addClass('selected').html(filename);
+	let filename = $(this).val().split('\\').pop();
+	$(this).next('.custom-file-label').addClass('selected').html(filename);
+});
+
+$('form[name="transaction_printing"]').validate({
+	rules: {
+		file: 'required',
+		tgl_pengambilan: 'required',
+		jmlh_halaman: 'required',
+		jam_pengambilan: 'required'
+	},
+	messages: {
+		file: 'Pilih file yang akan diprint',
+		tgl_pengambilan: 'Tanggal pengambilan harus diisi',
+		jmlh_halaman: 'Jumlah halaman harus diisi',
+		jam_pengambilan: 'Jam pengambilan harus diisi'
+	},
+	submitHandler: function (form) {
+		form.submit();
+	}
 });

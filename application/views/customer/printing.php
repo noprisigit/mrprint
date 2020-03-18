@@ -1,13 +1,15 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
+        <?= $this->session->flashdata('message'); ?>
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <?= form_open_multipart('customer/add_transaction_printing') ?>
+                        <?= form_open_multipart('customer/add-transaction-printing', 'name="transaction_printing"') ?>
                             <div class="row">
-                                <div class="col">    
+                                <div class="col">
+                                    <input type="hidden" name="id_partners" value="<?= $this->uri->segment(3); ?>">    
                                     <div class="form-group">
                                         <label for="">Select File</label>
                                         <div class="custom-file">
@@ -17,21 +19,21 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Tanggal Pengambilan</label>
-                                        <input type="date" name="" id="" class="form-control" placeholder="Tanggal Pengambilan">
+                                        <input type="date" name="tgl_pengambilan" class="form-control" placeholder="Tanggal Pengambilan">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Comment</label>
-                                        <input type="date" name="" id="" class="form-control" placeholder="Tanggal Pengambilan">
+                                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan">
                                     </div>
                                 </div>
                                 <div class="col">    
                                     <div class="form-group">
                                         <label for="">Jumlah Halaman</label>
-                                        <input type="number" name="" id="" class="form-control" placeholder="Tanggal Pengambilan">
+                                        <input type="number" name="jmlh_halaman" class="form-control" placeholder="Jumlah Halaman">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Jam Pengambilan</label>
-                                        <input type="time" name="" id="" class="form-control" placeholder="Tanggal Pengambilan">
+                                        <input type="time" name="jam_pengambilan" class="form-control" placeholder="Jam Pengambilan">
                                     </div>
                                     <div class="form-group">
                                         <label for=""></label>
