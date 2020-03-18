@@ -237,6 +237,26 @@ class Owner extends CI_Controller
         redirect('owner/verify-transaction');
     }
 
+    public function verify_wallet($invoice) {
+        $data = $this->db->get_where('master_transactions', ['invoice' => $invoice])->row_array();
+        $customer = $this->db->get_where('customers', ['id_customer' => $data['id_customer']])->row_array();
+
+        $this->db->set('status_pembayaran', 2);
+        $this->db->where('id_transaction', $data['id_transaction']);
+        $this->db->update('master_payment');
+
+        $data_wallet = $this->db->get_where('master_payment', ['id_transaction' => $data['id_transaction']])->row_array();
+
+        $this->db->set('wallet', $data_wallet['jumlah_bayar']);
+        $this->db->where('id_customer', $data['id_customer']);
+        $this->db->update('customers');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Pembayaran berhasil diverifikasi.
+        </div>');
+        redirect('owner/verify-transaction');
+    }
+
     public function transactions()
     {
         $header['title'] = "Transactions";

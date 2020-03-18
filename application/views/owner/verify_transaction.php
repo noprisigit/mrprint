@@ -100,7 +100,7 @@
                                         <td class="text-center text-danger">Belum Ada Bukti Bayar</td>
                                     <?php endif; ?>
                                     <td class="text-center">
-                                        <a href="<?= base_url('owner/verify/').$item['invoice']; ?>" class="btn btn-primary">Verifikasi</a>
+                                        <a href="<?= base_url('owner/verify-wallet/').$item['invoice']; ?>" class="btn btn-primary">Verifikasi</a>
                                     </td>
                                     
                                 </tr>
