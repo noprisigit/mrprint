@@ -265,7 +265,7 @@ class Auth extends CI_Controller
             $email = $this->session->userdata('reset_email');
 
             $this->db->set('password', $password);
-            $this->db->where('email');
+            $this->db->where('email', $email);
             $this->db->update('users');
 
             $this->session->unset_userdata('reset_email');
