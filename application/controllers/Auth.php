@@ -100,7 +100,16 @@ class Auth extends CI_Controller
                 'status_account'    => 0
             ];
 
+            $token = base64_encode(random_bytes(32));
+            $user_token = [
+                'email'     => $this->input->post('email'),
+                'token'     => $token
+            ];
+
             $this->db->insert('users', $data);
+            $this->db->insert('users_token', $user_token);
+
+            $this->_sendEmail($token, 'verify');
 
             $user = $this->db->get_where('users', ['email' => $this->input->post('email')])->row_array();
 
@@ -108,6 +117,70 @@ class Auth extends CI_Controller
 
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
                 Your account has been created. <br> Please check your email for activation.
+            </div>');
+            redirect('auth');
+        }
+    }
+
+    private function _sendEmail ($token, $type) {
+        $config= [
+            'protocol'      => 'smtp',
+            'smtp_host'     => 'ssl://smtp.googlemail.com',
+            'smtp_user'     => 'neatinw@gmail.com',
+            'smtp_pass'     => '19111998',
+            'smtp_port'     => 465,
+            'mailtype'      => 'html',
+            'charset'       => 'utf-8',
+            'newline'       => "\r\n"
+        ];
+
+        $this->load->library('email', $config);
+
+        $this->email->from('neatinw@gmail.com', 'mr.perint');
+        $this->email->to($this->input->post('email'));
+
+        if ($type == 'verify') {
+            $this->email->subject('Account Verification');
+            $this->email->message('Click this link to verify your account : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+        } 
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
+    public function verify() {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('users', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('users_token', ['token' => $token])->row_array();
+
+            if ($user_token) {
+                $this->db->set('status_account', 1);
+                $this->db->where('email', $email);
+                $this->db->update('users');
+
+                $this->db->delete('users_token', ['email' => $email]);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+                    '. $email .' <br> has been activated.
+                </div>');
+                redirect('auth');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">
+                    Account activation failed!. Token invalid
+                </div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">
+                Account activation failed!. Wrong email
             </div>');
             redirect('auth');
         }
@@ -122,7 +195,7 @@ class Auth extends CI_Controller
         ];
         $this->session->unset_userdata($data);
 
-         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
             You have been logout.
         </div>');
         redirect('auth');
