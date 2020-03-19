@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>mr.perint | Log in</title>
+    <title>mr.perint | Reset Password</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,7 +31,7 @@
                 <p class="login-box-msg"></p>
                 <?= $this->session->flashdata('message'); ?>
 
-                <form action="<?= base_url('auth'); ?>" method="post" class="mb-3">
+                <form action="<?= base_url('auth/forgot-password'); ?>" method="post" class="mb-3">
                     <div class="form-group">
                         <div class="input-group">
                             <input type="email" class="form-control" name="email" placeholder="Email">
@@ -43,31 +43,17 @@
                         </div>
                         <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
-                    </div>
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
 
-                <p class="mb-1 text-center">
-                    <a href="<?= base_url('auth/forgot-password'); ?>">I forgot my password</a>
-                </p>
                 <p class="mb-0 text-center">
-                    <a href="<?= base_url('auth/registration'); ?>" class="text-center">Register a new membership</a>
+                    <a href="<?= base_url('auth'); ?>" class="text-center">Back to Login</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
