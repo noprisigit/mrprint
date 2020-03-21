@@ -9,6 +9,14 @@ class Owner extends CI_Controller
         if (!$this->session->userdata('email'))
             redirect('auth');
         
+        if($this->session->userdata('status_access') != 'owner') {
+            if ($this->session->userdata('status_access') == 'partner') {
+                redirect('partner');
+            } elseif( $this->session->userdata('status_access') == 'customer') {
+                redirect('customer');
+            }
+        }
+        
         $this->load->model('OwnerModel');
         $this->load->library('form_validation');
     }
