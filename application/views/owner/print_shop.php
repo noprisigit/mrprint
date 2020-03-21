@@ -11,7 +11,7 @@
                         <table class="table table-bordered data-table">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center">#</th>
                                     <th class="text-center">Owner</th>
                                     <th class="text-center">Name Shop</th>
                                     <th class="text-center">Rate Average</th>
@@ -21,9 +21,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($print_shop as $item) : ?>
+                                <?php
+                                    $no = 1; 
+                                    foreach($print_shop as $item) : 
+                                ?>
                                 <tr>
-                                    <td class="text-center"><?= $item['id_user']; ?></td>
+                                    <td class="text-center"><?= $no; ?></td>
                                     <td><?= $item['full_name']; ?></td>
                                     <td><?= $item['shop_name']; ?></td>
                                     <td></td>
@@ -47,7 +50,10 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <?php endforeach; ?>
+                                <?php 
+                                    $no++;
+                                    endforeach; ?>
+                                
                             </tbody>
                         </table>
                     </div>
