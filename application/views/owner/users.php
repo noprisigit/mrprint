@@ -74,29 +74,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="card-body">
-                  
-                    <div class="form-group">
-                        <label for="">Nama Lengkap</label>
-                        <input type="text" class="form-control detail-nama" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="text" class="form-control detail-email" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Username</label>
-                        <input type="text" class="form-control detail-username"readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Status Akses</label>
-                        <input type="text" class="form-control detail-akses" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Status Akun</label>
-                        <input type="text" class="form-control detail-akun" readonly>
-                    </div>
-                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Nama Lengkap</td>
+                        <td class="detail-nama"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td class="detail-email"></td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td class="detail-username"></td>
+                    </tr>
+                    <tr>
+                        <td>Status Akses</td>
+                        <td class="detail-akses"></td>
+                    </tr>
+                    <tr>
+                        <td>Status Akun</td>
+                        <td class="detail-akun"></td>
+                    </tr>
+                </table>
             </div>
             <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-default float-right" data-dismiss="modal">Close</button>
