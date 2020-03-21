@@ -10,7 +10,7 @@
                         <table class="table table-bordered data-table">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center">#</th>
                                     <th class="text-center">Name</th>
                                     <th class="text-center">Email</th>
                                     <th class="text-center">Status</th>
@@ -18,10 +18,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($users as $item) : ?>
+                                <?php
+                                    $no = 0; 
+                                    foreach($users as $item) : 
+                                ?>
                                     <?php if($item['status_access'] != "owner") : ?>
                                     <tr>
-                                        <td class="text-center"><?= $item['id_user']; ?></td>
+                                        <td class="text-center"><?= $no; ?></td>
                                         <td><?= $item['full_name']; ?></td>
                                         <td><?= $item['email']; ?></td>
                                         <?php if($item['status_account'] == 0) : ?>
@@ -44,7 +47,10 @@
                                         </td>
                                     </tr>
                                     <?php endif;?>
-                                <?php endforeach; ?>
+                                <?php
+                                    $no++; 
+                                    endforeach; 
+                                ?>
                             </tbody>
                         </table>
                     </div>

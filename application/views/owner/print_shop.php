@@ -52,7 +52,8 @@
                                 </tr>
                                 <?php 
                                     $no++;
-                                    endforeach; ?>
+                                    endforeach; 
+                                ?>
                                 
                             </tbody>
                         </table>
