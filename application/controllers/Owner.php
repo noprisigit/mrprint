@@ -8,7 +8,7 @@ class Owner extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('email'))
             redirect('auth');
-
+        
         $this->load->model('OwnerModel');
         $this->load->library('form_validation');
     }
