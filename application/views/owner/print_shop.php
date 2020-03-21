@@ -40,7 +40,7 @@
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <span data-toggle="modal" data-target="#modal-detail">
-                                                <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
+                                                <button type="button" class="btn btn-info btn-detail-user" data-toggle="tooltip" data-placement="top" title="Detail" data-nama="<?= $item['full_name']; ?>" data-print_shop="<?= $item['shop_name']; ?>" data-username="<?= $item['username']; ?>" data-email="<?= $item['email']; ?>" data-akses="<?= $item['status_access']; ?>" data-akun="<?= $item['status_account']; ?>" data-provinsi="<?= $item['nama_provinsi']; ?>" data-kabupaten="<?= $item['nama_kabupaten']; ?>" data-address="<?= $item['address']; ?>" data-link="<?= $item['link_g_map']; ?>" data-telphone="<?= $item['telphone']; ?>"><i class="fas fa-info-circle"></i></button>
                                             </span>
                                             <a href="<?= base_url('owner/edit-print-shop/') . $item['id_partners']; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen-square"></i></a>
                                             <?php if($item['status_account'] == 0) : ?>
@@ -81,39 +81,61 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">Nama Pemilik</label>
-                            <input type="text" class="form-control detail-nama" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Nama Print Shop</label>
-                            <input type="text" class="form-control detail-nama" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Email</label>
-                            <input type="text" class="form-control detail-email" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Username</label>
-                            <input type="text" class="form-control detail-username"readonly>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Status Akses</label>
-                                    <input type="text" class="form-control detail-akses" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Status Akun</label>
-                                    <input type="text" class="form-control detail-akun" readonly>
-                                </div>
-                            </div>
-                        </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>Nama Pemilik</td>
+                                <td class="detail-nama"></td>
+                            </tr>
+                            <tr>
+                                <td>Nama Print Shop</td>
+                                <td class="detail-shop"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td class="detail-email"></td>
+                            </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td class="detail-username"></td>
+                            </tr>
+                            <tr>
+                                <td>Status Akses</td>
+                                <td class="detail-akses"></td>
+                            </tr>
+                            <tr>
+                                <td>Status Akun</td>
+                                <td class="detail-akun"></td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>Provinsi</td>
+                                <td class="detail-provinsi"></td>
+                            </tr>
+                            <tr>
+                                <td>Kabupaten</td>
+                                <td class="detail-kabupaten"></td>
+                            </tr>
+                            <tr>
+                                <td>Alamat</td>
+                                <td class="detail-address"></td>
+                            </tr>
+                            <tr>
+                                <td>Link G-Map</td>
+                                <td class="detail-link"></td>
+                            </tr>
+                            <tr>
+                                <td>Telphone</td>
+                                <td class="detail-telphone"></td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Status Akun</td>
+                                <td class="detail-akun"></td>
+                            </tr> -->
+                        </table>
+                        <!-- <div class="form-group">
                             <label for="">Provinsi</label>
                             <input type="text" class="form-control detail-provinsi" readonly>
                         </div>
@@ -132,7 +154,7 @@
                         <div class="form-group">
                             <label for="">Telphone</label>
                             <input type="text" class="form-control detail-telphone" readonly>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                     
