@@ -30,7 +30,8 @@
                                     <td><?= $item['full_name']; ?></td>
                                     <td><?= $item['shop_name']; ?></td>
                                     <td></td>
-                                    <td class="text-center"><?= $item['date_created'] ?></td>
+                                    <?php $date = date_create($item['date_created']); ?>
+                                    <td class="text-center"><?= date_format($date, 'd-m-Y H:i:s'); ?></td>
                                     <?php if($item['status_account'] == 0) : ?>
                                         <td class="text-center text-danger">Not Active</td>
                                     <?php else : ?>
