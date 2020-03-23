@@ -283,4 +283,22 @@ class Owner extends CI_Controller
 
         echo json_encode($data);
     }
+
+    public function master_daerah() {
+        $header['title'] = "Master Lokasi";
+        $header['access'] = "Owner";
+
+        $this->load->view('template/header', $header);
+        $this->load->view('owner/master-daerah');
+        $this->load->view('template/footer');
+    }
+
+    public function tambah_provinsi() {
+        $this->db->insert('list_provinsi', ['nama_provinsi' => htmlspecialchars($this->input->post('nama_provinsi'))]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Provinsi Baru Berhasil Ditambah.
+        </div>');
+        redirect('owner/master-daerah');
+    }
 }

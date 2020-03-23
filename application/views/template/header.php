@@ -131,6 +131,14 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('owner/master-daerah') ?>" class="nav-link <?= $title == "Transactions" ? 'active text-white' : ''; ?>">
+                                    <i class="nav-icon fas fa-dollar-sign"></i>
+                                    <p>
+                                        Master Lokasi
+                                    </p>
+                                </a>
+                            </li>
                         <?php elseif ($this->session->userdata('status_access') == 'partner') : ?>
                             <li class="nav-item">
                                 <a href="<?= base_url('partner') ?>" class="nav-link <?= ($title == "Home" or $title == "Profile") ? 'active text-white' : ''; ?>">
