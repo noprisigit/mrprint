@@ -10,7 +10,30 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Nama Provinsi</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $no = 1; 
+                                    foreach($provinsi as $item) : 
+                                ?>
+                                <tr>
+                                    <td class="text-center"><?= $no; ?></td>
+                                    <td><?= $item['nama_provinsi']; ?></td>
+                                    <td></td>
+                                <?php 
+                                    $no++;
+                                    endforeach; 
+                                ?>
+                                
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

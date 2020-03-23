@@ -288,8 +288,10 @@ class Owner extends CI_Controller
         $header['title'] = "Master Lokasi";
         $header['access'] = "Owner";
 
+        $content['provinsi'] = $this->db->get('list_provinsi')->result_array();
+
         $this->load->view('template/header', $header);
-        $this->load->view('owner/master-daerah');
+        $this->load->view('owner/master-daerah', $content);
         $this->load->view('template/footer');
     }
 
