@@ -182,6 +182,32 @@
         ],
         fixedColumns: true
     });
+
+    $('.btn-detail-provinsi').on('click', function () {
+        var id_provinsi = $(this).data('id_provinsi');
+        // console.log(id_provinsi);
+        $('#daftar-kabupaten').empty();
+        $.ajax({
+            url: "<?= base_url('owner/get_kabupaten'); ?>",
+            type: "post",
+            data: { id_provinsi: id_provinsi },
+            dataType: "json",
+            success: function (res) {
+                console.log(res.length)
+                for (var i = 0; i < res.length; i++) {
+                    $('#daftar-kabupaten').append(`
+                        <tr>
+                            <td class="text-center">` + (i+1) + `</td>
+                            <td>` + res[i]['nama_kabupaten'] + `</td>
+                        </tr>
+                    `);
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    });
 </script>
 </body>
 

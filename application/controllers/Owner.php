@@ -280,7 +280,7 @@ class Owner extends CI_Controller
 
     public function get_kabupaten() {
         $data = $this->db->get_where('list_kabupaten', ['id_provinsi' => $this->input->post('id_provinsi')])->result_array();
-
+        // dd($data);
         echo json_encode($data);
     }
 
