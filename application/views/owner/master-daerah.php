@@ -30,6 +30,7 @@
                                         <span data-toggle="modal" data-target="#list-kabupaten">
                                             <button type="button" class="btn btn-info btn-detail-provinsi" data-id_provinsi="<?= $item['id_provinsi']; ?>" data-toggle="tooltip" data-placement="top" title="Daftar Kabupaten"><i class="fas fa-info-circle"></i></button>
                                         </span>
+                                        <a href="<?= base_url('owner/delete-provinsi/') . $item['id_provinsi']; ?>" onclick="return confirm('Anda yakin ingin menghapus ini?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus Provinsi"><i class="fas fa-trash"></i></a>
                                     </td>
                                 <?php 
                                     $no++;

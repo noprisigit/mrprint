@@ -303,4 +303,13 @@ class Owner extends CI_Controller
         </div>');
         redirect('owner/master-daerah');
     }
+
+    public function delete_provinsi($id_provinsi) {
+        $this->db->delete('list_provinsi', ['id_provinsi' => $id_provinsi]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Data Provinsi Berhasil Dihapus.
+        </div>');
+        redirect('owner/master-daerah');
+    }
 }
