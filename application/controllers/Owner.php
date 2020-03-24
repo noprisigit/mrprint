@@ -316,6 +316,37 @@ class Owner extends CI_Controller
         redirect('owner/master-daerah');
     }
 
+    public function edit_provinsi () {
+        $this->db->set('nama_provinsi', $this->input->post('nama_provinsi'));
+        $this->db->where('id_provinsi', $this->input->post('id_provinsi'));
+        $this->db->update('list_provinsi');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Nama Provinsi Berhasil Diperbaharui.
+        </div>');
+        redirect('owner/master-daerah');
+    }
+
+    public function edit_kabupaten() {
+        $this->db->set('nama_kabupaten', $this->input->post('nama_kabupaten'));
+        $this->db->where('id_kabupaten', $this->input->post('id_kabupaten'));
+        $this->db->update('list_kabupaten');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Nama Kota/Kabupaten Berhasil Diperbaharui.
+        </div>');
+        redirect('owner/master-daerah');
+    }
+
+    public function delete_kabupaten($id_kabupaten) {
+        $this->db->delete('list_kabupaten', ['id_kabupaten' => $id_kabupaten]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Data Kabupaten Berhasil Dihapus.
+        </div>');
+        redirect('owner/master-daerah');
+    }
+
     public function delete_provinsi($id_provinsi) {
         $this->db->delete('list_provinsi', ['id_provinsi' => $id_provinsi]);
 

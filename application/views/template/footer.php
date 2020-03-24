@@ -183,9 +183,22 @@
         fixedColumns: true
     });
 
+    $(document).on('click', '#btn-edit-kabupaten', function () {
+        let id_kabupaten = $(this).data('id_kabupaten');
+        let nama_kabupaten = $(this).data('nama_kabupaten');
+
+        $('.modal-body #ed_id_kabupaten').empty();
+        $('.modal-body #ed_nama_kabupaten').empty();
+
+        $('.modal-body #ed_id_kabupaten').attr('value', id_kabupaten);
+        $('.modal-body #ed_nama_kabupaten').attr('value', nama_kabupaten);
+
+    });
+
     $(document).on('click', '.btn-detail-provinsi', function () {
         var id_provinsi = $(this).data('id_provinsi');
-        console.log(id_provinsi);
+        var url = "<?= base_url('owner/delete-kabupaten/'); ?>"
+
         $('#daftar-kabupaten').empty();
         $.ajax({
             url: "<?= base_url('owner/get_kabupaten'); ?>",
@@ -193,12 +206,18 @@
             data: { id_provinsi: id_provinsi },
             dataType: "json",
             success: function (res) {
-                console.log(res.length)
+                
                 for (var i = 0; i < res.length; i++) {
                     $('#daftar-kabupaten').append(`
                         <tr>
                             <td class="text-center">` + (i+1) + `</td>
                             <td>` + res[i]['nama_kabupaten'] + `</td>
+                            <td class="text-center">
+                                <span data-toggle="modal" data-target="#edit-kabupaten">
+                                    <button type="button" id="btn-edit-kabupaten" class="btn btn-info btn-edit-kabupaten" data-id_kabupaten="`+ res[i]['id_kabupaten'] +`" data-nama_kabupaten="`+ res[i]['nama_kabupaten'] +`" data-toggle="tooltip" data-placement="top" title="Hapus Kabupaten"><i class="fas fa-edit"></i></button>
+                                </span>
+                                <a href="`+ url + res[i]['id_kabupaten'] +`" onclick="return confirm('Anda yakin ingin menghapus ini?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus Kabupaten"><i class="fas fa-trash"></i></a>
+                            </td>
                         </tr>
                     `);
                 }
@@ -209,6 +228,16 @@
         });
     });
 
+    $(document).on('click', '.btn-edit-provinsi', function () {
+        let id_provinsi = $(this).data('id_provinsi');
+        let nama_provinsi = $(this).data('nama_provinsi');
+
+        $('#ed_id_provinsi').empty();
+        $('#ed_nama_provinsi').empty();
+
+        $('#ed_id_provinsi').attr('value', id_provinsi);
+        $('#ed_nama_provinsi').attr('value', nama_provinsi);
+    });
 </script>
 </body>
 

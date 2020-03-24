@@ -30,6 +30,9 @@
                                         <span data-toggle="modal" data-target="#list-kabupaten">
                                             <button type="button" class="btn btn-info btn-detail-provinsi" data-id_provinsi="<?= $item['id_provinsi']; ?>" data-toggle="tooltip" data-placement="top" title="Daftar Kabupaten"><i class="fas fa-info-circle"></i></button>
                                         </span>
+                                         <span data-toggle="modal" data-target="#edit-provinsi">
+                                            <button type="button" class="btn btn-primary btn-edit-provinsi" data-id_provinsi="<?= $item['id_provinsi']; ?>" data-nama_provinsi="<?= $item['nama_provinsi']; ?>" data-toggle="tooltip" data-placement="top" title="Edit Provinsi"><i class="fas fa-edit"></i></button>
+                                        </span>
                                         <a href="<?= base_url('owner/delete-provinsi/') . $item['id_provinsi']; ?>" onclick="return confirm('Anda yakin ingin menghapus ini?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus Provinsi"><i class="fas fa-trash"></i></a>
                                     </td>
                                 <?php 
@@ -60,6 +63,34 @@
                 <form action="<?= base_url('owner/tambah-provinsi'); ?>" method="post">
                     <div class="form-group">
                         <input type="text" name="nama_provinsi" class="form-control" placeholder="Nama Provinsi" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="edit-provinsi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Nama Provinsi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('owner/edit-provinsi'); ?>" method="post">
+                    <input type="hidden" name="id_provinsi" id="ed_id_provinsi">
+                    <div class="form-group">
+                        <input type="text" name="nama_provinsi" id="ed_nama_provinsi" class="form-control" placeholder="Nama Provinsi" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
@@ -124,12 +155,41 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Nama Kabupaten</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody id="daftar-kabupaten">
                         
                     </tbody>
                 </table>
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="edit-kabupaten">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Kota/Kabupaten</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('owner/edit-kabupaten'); ?>" method="post">
+                    <input type="hidden" name="id_kabupaten" id="ed_id_kabupaten">
+                    <div class="form-group">
+                        <input type="text" name="nama_kabupaten" id="ed_nama_kabupaten" class="form-control" placeholder="Nama Kota/Kabupaten" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
             </div>
             <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
