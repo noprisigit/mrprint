@@ -183,9 +183,9 @@
         fixedColumns: true
     });
 
-    $('.btn-detail-provinsi').on('click', function () {
+    $(document).on('click', '.btn-detail-provinsi', function () {
         var id_provinsi = $(this).data('id_provinsi');
-        // console.log(id_provinsi);
+        console.log(id_provinsi);
         $('#daftar-kabupaten').empty();
         $.ajax({
             url: "<?= base_url('owner/get_kabupaten'); ?>",
@@ -208,6 +208,7 @@
             }
         });
     });
+
 </script>
 </body>
 

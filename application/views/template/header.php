@@ -132,7 +132,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('owner/master-daerah') ?>" class="nav-link <?= $title == "Transactions" ? 'active text-white' : ''; ?>">
+                                <a href="<?= base_url('owner/master-daerah') ?>" class="nav-link <?= $title == "Master Daerah" ? 'active text-white' : ''; ?>">
                                     <i class="nav-icon fas fa-location-arrow"></i>
                                     <p>
                                         Master Lokasi

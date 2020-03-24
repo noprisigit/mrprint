@@ -285,7 +285,7 @@ class Owner extends CI_Controller
     }
 
     public function master_daerah() {
-        $header['title'] = "Master Lokasi";
+        $header['title'] = "Master Daerah";
         $header['access'] = "Owner";
 
         $content['provinsi'] = $this->db->get('list_provinsi')->result_array();
@@ -300,6 +300,18 @@ class Owner extends CI_Controller
 
         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
             Provinsi Baru Berhasil Ditambah.
+        </div>');
+        redirect('owner/master-daerah');
+    }
+
+    public function tambah_kabupaten() {
+        $this->db->insert('list_kabupaten', [
+            'id_provinsi'       => $this->input->post('id_provinsi'),
+            'nama_kabupaten'    => $this->input->post('nama_kabupaten')
+        ]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">
+            Kota/Kabupaten Baru Berhasil Ditambah.
         </div>');
         redirect('owner/master-daerah');
     }
