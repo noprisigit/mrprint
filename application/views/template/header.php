@@ -33,13 +33,13 @@
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand <?php if ($this->session->userdata('status_access') == "owner") : ?> navbar-primary navbar-dark <?php else : ?>  navbar-orange navbar-light <?php endif; ?>">
+        <nav class="main-header navbar navbar-expand <?php if ($this->session->userdata('status_access') == "owner") : ?> navbar-navy navbar-dark <?php else : ?>  navbar-orange navbar-light <?php endif; ?>">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
+            <!-- <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link text-white" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
-            </ul>
+            </ul> -->
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -66,11 +66,11 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar <?php if ($this->session->userdata('status_access') == "owner") : ?> sidebar-light-primary <?php else : ?>  sidebar-light-orange <?php endif; ?> elevation-4">
+        <aside class="main-sidebar <?php if ($this->session->userdata('status_access') == "owner") : ?> sidebar-light-navy <?php else : ?>  sidebar-light-orange <?php endif; ?> elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link <?php if ($this->session->userdata('status_access') == "owner") : ?> navbar-primary <?php else : ?>  navbar-orange <?php endif; ?>">
-                <img src="<?= base_url('assets/'); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light text-white">mr.perint</span>
+            <a href="#" class="brand-link text-center <?php if ($this->session->userdata('status_access') == "owner") : ?> navbar-navy <?php else : ?>  navbar-orange <?php endif; ?>">
+                <img src="<?= base_url('assets/'); ?>dist/img/logo-printer.png" alt="Mrprint Logo" class="img-circle elevation-3" width="130px" height="130px" style="opacity: .8">
+                <!-- <span class="brand-text font-weight-light text-white">mr.perint</span> -->
             </a>
 
             <!-- Sidebar -->
@@ -133,7 +133,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= base_url('owner/master-daerah') ?>" class="nav-link <?= $title == "Transactions" ? 'active text-white' : ''; ?>">
-                                    <i class="nav-icon fas fa-dollar-sign"></i>
+                                    <i class="nav-icon fas fa-location-arrow"></i>
                                     <p>
                                         Master Lokasi
                                     </p>
