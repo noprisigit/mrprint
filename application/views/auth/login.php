@@ -22,11 +22,10 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <!-- <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
-        </div> -->
-        <!-- /.login-logo -->
-        <div class="card">
+        <div class="row justify-content-center" style="margin-top: -60px">
+            <img src="<?= base_url('assets/dist/img/logo-printer.png'); ?>" class="img-fluid" width="300px" height="300px" alt="logo printer">
+        </div>
+        <div class="card" style="margin-top: -50px">
             <div class="card-body login-card-body">
                 <p class="login-box-msg"></p>
                 <?= $this->session->flashdata('message'); ?>
