@@ -46,6 +46,7 @@
 
     $('.provinsi').on('change', function() {
         var id_provinsi = $(this).val();
+        console.log(id_provinsi);
        
         $('.kabupaten').empty();
         $.ajax({
@@ -61,7 +62,8 @@
                 }
             },
             error: function (err) {
-                console.log(err);
+                console.log("error");
+                console.log(err.message);
             }
         });
     });
@@ -88,7 +90,6 @@
         var color;
 
         console.log(id_provinsi + ' ' + id_kabupaten);
-        
 
         $.ajax({
             url: "<?= base_url('customer/search-print-shop-by-location'); ?>",
