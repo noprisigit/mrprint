@@ -74,7 +74,7 @@ class Customer extends CI_Controller {
         if ($file) {
             $config['upload_path']          = './assets/dist/file/';
             $config['allowed_types']        = 'docx|doc|pdf';
-            $config['max_size']             = 2048;
+            $config['max_size']             = 5048;
             $config['file_name']            = $invoice;
             
             $this->load->library('upload', $config);
