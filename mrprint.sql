@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Mar 2020 pada 04.38
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.3
+-- Generation Time: May 01, 2020 at 09:34 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customers`
+-- Table structure for table `customers`
 --
 
 CREATE TABLE `customers` (
@@ -35,7 +34,7 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `customers`
+-- Dumping data for table `customers`
 --
 
 INSERT INTO `customers` (`id_customer`, `id_user`, `wallet`) VALUES
@@ -46,7 +45,7 @@ INSERT INTO `customers` (`id_customer`, `id_user`, `wallet`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `list_kabupaten`
+-- Table structure for table `list_kabupaten`
 --
 
 CREATE TABLE `list_kabupaten` (
@@ -56,7 +55,7 @@ CREATE TABLE `list_kabupaten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `list_kabupaten`
+-- Dumping data for table `list_kabupaten`
 --
 
 INSERT INTO `list_kabupaten` (`id_kabupaten`, `id_provinsi`, `nama_kabupaten`) VALUES
@@ -571,7 +570,7 @@ INSERT INTO `list_kabupaten` (`id_kabupaten`, `id_provinsi`, `nama_kabupaten`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `list_provinsi`
+-- Table structure for table `list_provinsi`
 --
 
 CREATE TABLE `list_provinsi` (
@@ -580,7 +579,7 @@ CREATE TABLE `list_provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `list_provinsi`
+-- Dumping data for table `list_provinsi`
 --
 
 INSERT INTO `list_provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
@@ -622,7 +621,7 @@ INSERT INTO `list_provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_report`
+-- Table structure for table `log_report`
 --
 
 CREATE TABLE `log_report` (
@@ -632,7 +631,7 @@ CREATE TABLE `log_report` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `log_report`
+-- Dumping data for table `log_report`
 --
 
 INSERT INTO `log_report` (`id_log`, `id_transaction`, `keterangan`) VALUES
@@ -642,7 +641,7 @@ INSERT INTO `log_report` (`id_log`, `id_transaction`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_payment`
+-- Table structure for table `master_payment`
 --
 
 CREATE TABLE `master_payment` (
@@ -654,7 +653,7 @@ CREATE TABLE `master_payment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `master_payment`
+-- Dumping data for table `master_payment`
 --
 
 INSERT INTO `master_payment` (`id_payment`, `id_transaction`, `jumlah_bayar`, `bukti_bayar`, `status_pembayaran`) VALUES
@@ -662,12 +661,13 @@ INSERT INTO `master_payment` (`id_payment`, `id_transaction`, `jumlah_bayar`, `b
 (4, 4, 5000, 'PRJ-2020031812072032.png', 2),
 (5, 6, 10000, 'TOP-202003182232033.png', 2),
 (6, 7, 20000, 'TOP-202003182257313.png', 2),
-(7, 8, 100000, 'TOP-202003182310023.png', 2);
+(7, 8, 100000, 'TOP-202003182310023.png', 2),
+(8, 9, 21000, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_transactions`
+-- Table structure for table `master_transactions`
 --
 
 CREATE TABLE `master_transactions` (
@@ -686,7 +686,7 @@ CREATE TABLE `master_transactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `master_transactions`
+-- Dumping data for table `master_transactions`
 --
 
 INSERT INTO `master_transactions` (`id_transaction`, `invoice`, `nama_file`, `jumlah_halaman`, `tgl_pengambilan`, `jam_pengambilan`, `komentar`, `id_customer`, `id_partners`, `status_printing`, `type`, `date_created`) VALUES
@@ -694,12 +694,13 @@ INSERT INTO `master_transactions` (`id_transaction`, `invoice`, `nama_file`, `ju
 (4, 'PRJ-2020031812072032', '2020031812072032.docx', 10, '2020-03-20', '10:30:00', 'Tidak usah dijilid', 3, 2, 1, 'printing', '2020-03-18 12:07:20'),
 (6, 'TOP-202003182232033', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, 'top-up', '2020-03-18 22:32:03'),
 (7, 'TOP-202003182257313', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, 'top-up', '2020-03-18 22:57:31'),
-(8, 'TOP-202003182310023', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, 'top-up', '2020-03-18 23:10:02');
+(8, 'TOP-202003182310023', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, 'top-up', '2020-03-18 23:10:02'),
+(9, 'PRJ-2020050114323151', NULL, 70, '2020-05-16', '14:10:00', 'Tidak usah dijilid', 5, 1, 0, '', '2020-05-01 14:32:31');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `partners`
+-- Table structure for table `partners`
 --
 
 CREATE TABLE `partners` (
@@ -718,7 +719,7 @@ CREATE TABLE `partners` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `partners`
+-- Dumping data for table `partners`
 --
 
 INSERT INTO `partners` (`id_partners`, `id_user`, `shop_name`, `price`, `provinsi`, `kabupaten`, `address`, `link_g_map`, `telphone`, `description`, `image`, `status_shop`) VALUES
@@ -729,7 +730,7 @@ INSERT INTO `partners` (`id_partners`, `id_user`, `shop_name`, `price`, `provins
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -744,7 +745,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `full_name`, `email`, `username`, `password`, `status_access`, `status_account`, `date_created`) VALUES
@@ -753,12 +754,12 @@ INSERT INTO `users` (`id_user`, `full_name`, `email`, `username`, `password`, `s
 (6, 'Muhammad Dhika Azizi', 'dhika@gmail.com', 'mdhikas', '$2y$10$As1oClYq6xM9nOLBuChP2.CEh52cEbp2rPk/DMIUYGIR0vUqTXpYq', 'customer', 1, '2020-03-17 23:00:01'),
 (7, 'Antony Ginting', 'antony@gmail.com', 'antony', '$2y$10$K7iWqNfqKw9.kRQxs.gOv..OSIWafImKwuyDSA8BWsS8lnVKNMeuW', 'partner', 1, '2020-03-18 12:02:36'),
 (8, 'Hakuna Matata', 'hakuna@gmail.com', 'hakuna', '$2y$10$UG5FRG3wOgvJm39cb3Hvp.nXu2MIFxeuvCTN34uSjbOm370jBd9.2', 'partner', 1, '2020-03-18 21:29:52'),
-(11, 'Sandhika', 'noprisigit@gmail.com', 'sandhika', '$2y$10$WveRxJiXs9ZsG.aUKKKE.etrZOCG0EkQrGB4myITGYSS0mYxIWPWu', 'customer', 1, '2020-03-19 09:18:05');
+(11, 'Sandhika', 'noprisigit@gmail.com', 'sandhika', '$2y$10$pBRVJhM833W/UUWWIYhOfOVJaOSv5J.S4Bh1YqEkBqijPTRw0W/Gu', 'customer', 1, '2020-03-19 09:18:05');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users_token`
+-- Table structure for table `users_token`
 --
 
 CREATE TABLE `users_token` (
@@ -768,164 +769,165 @@ CREATE TABLE `users_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `users_token`
+-- Dumping data for table `users_token`
 --
 
 INSERT INTO `users_token` (`id`, `email`, `token`) VALUES
 (4, 'noprisigit@gmail.com', 'RSMCuHjd7oViwlwln7gn976vGgvQ9ospytjSa9+hGYw='),
-(5, 'noprisigit@gmail.com', 'ggcvp5UVtKCVpA8wknSP5V7G3vpkGhOszwQIwx5LfQY=');
+(5, 'noprisigit@gmail.com', 'ggcvp5UVtKCVpA8wknSP5V7G3vpkGhOszwQIwx5LfQY='),
+(6, 'noprisigit@gmail.com', 'PK1L/B5AimlEkNB2rq1F83SlUBbrZs+7Ps+SK0+pt6M=');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `customers`
+-- Indexes for table `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id_customer`),
   ADD KEY `customer_user` (`id_user`);
 
 --
--- Indeks untuk tabel `list_kabupaten`
+-- Indexes for table `list_kabupaten`
 --
 ALTER TABLE `list_kabupaten`
   ADD PRIMARY KEY (`id_kabupaten`),
   ADD KEY `kabupaten_provinsi` (`id_provinsi`);
 
 --
--- Indeks untuk tabel `list_provinsi`
+-- Indexes for table `list_provinsi`
 --
 ALTER TABLE `list_provinsi`
   ADD PRIMARY KEY (`id_provinsi`);
 
 --
--- Indeks untuk tabel `log_report`
+-- Indexes for table `log_report`
 --
 ALTER TABLE `log_report`
   ADD PRIMARY KEY (`id_log`);
 
 --
--- Indeks untuk tabel `master_payment`
+-- Indexes for table `master_payment`
 --
 ALTER TABLE `master_payment`
   ADD PRIMARY KEY (`id_payment`),
   ADD KEY `payment_transaction` (`id_transaction`);
 
 --
--- Indeks untuk tabel `master_transactions`
+-- Indexes for table `master_transactions`
 --
 ALTER TABLE `master_transactions`
   ADD PRIMARY KEY (`id_transaction`),
   ADD KEY `transaction_customer` (`id_customer`);
 
 --
--- Indeks untuk tabel `partners`
+-- Indexes for table `partners`
 --
 ALTER TABLE `partners`
   ADD PRIMARY KEY (`id_partners`),
   ADD KEY `partner_user` (`id_user`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indeks untuk tabel `users_token`
+-- Indexes for table `users_token`
 --
 ALTER TABLE `users_token`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `customers`
+-- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `list_kabupaten`
+-- AUTO_INCREMENT for table `list_kabupaten`
 --
 ALTER TABLE `list_kabupaten`
   MODIFY `id_kabupaten` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=508;
 
 --
--- AUTO_INCREMENT untuk tabel `list_provinsi`
+-- AUTO_INCREMENT for table `list_provinsi`
 --
 ALTER TABLE `list_provinsi`
   MODIFY `id_provinsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT untuk tabel `log_report`
+-- AUTO_INCREMENT for table `log_report`
 --
 ALTER TABLE `log_report`
   MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `master_payment`
+-- AUTO_INCREMENT for table `master_payment`
 --
 ALTER TABLE `master_payment`
-  MODIFY `id_payment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_payment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `master_transactions`
+-- AUTO_INCREMENT for table `master_transactions`
 --
 ALTER TABLE `master_transactions`
-  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `partners`
+-- AUTO_INCREMENT for table `partners`
 --
 ALTER TABLE `partners`
   MODIFY `id_partners` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `users_token`
+-- AUTO_INCREMENT for table `users_token`
 --
 ALTER TABLE `users_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `customers`
+-- Constraints for table `customers`
 --
 ALTER TABLE `customers`
   ADD CONSTRAINT `customer_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `list_kabupaten`
+-- Constraints for table `list_kabupaten`
 --
 ALTER TABLE `list_kabupaten`
   ADD CONSTRAINT `kabupaten_provinsi` FOREIGN KEY (`id_provinsi`) REFERENCES `list_provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `master_payment`
+-- Constraints for table `master_payment`
 --
 ALTER TABLE `master_payment`
   ADD CONSTRAINT `payment_transaction` FOREIGN KEY (`id_transaction`) REFERENCES `master_transactions` (`id_transaction`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `master_transactions`
+-- Constraints for table `master_transactions`
 --
 ALTER TABLE `master_transactions`
   ADD CONSTRAINT `transaction_customer` FOREIGN KEY (`id_customer`) REFERENCES `customers` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `partners`
+-- Constraints for table `partners`
 --
 ALTER TABLE `partners`
   ADD CONSTRAINT `partner_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
