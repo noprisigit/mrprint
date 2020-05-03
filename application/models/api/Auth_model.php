@@ -11,4 +11,10 @@ class Auth_model extends CI_Model
         $this->db->where('users.status_access', 'customer');
         return $this->db->get()->result_array();
     }
+
+    public function registrationCustomer($data)
+    {
+        $this->db->insert('users', $data);
+        return $this->db->affected_rows();
+    }
 }

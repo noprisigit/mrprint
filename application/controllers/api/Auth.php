@@ -38,7 +38,7 @@ class Auth extends REST_Controller
                         $this->response([
                             'status' => FALSE,
                             'message' => 'this email has not been verified.'
-                        ], REST_Controller::HTTP_NOT_FOUND);
+                        ], REST_Controller::HTTP_BAD_REQUEST);
                     }
                 } else {
                     $this->response([
@@ -50,7 +50,52 @@ class Auth extends REST_Controller
                 $this->response([
                     'status' => FALSE,
                     'message' => 'email not found.'
+                ], REST_Controller::HTTP_BAD_REQUEST);
+            }
+        }
+    }
+
+    public function registration_post()
+    {
+        $full_name = $this->post('full_name');
+        $username = $this->post('username');
+        $email = $this->post('email');
+        $password = $this->post('password');
+        $confirm_password = $this->post('confirm_password');
+
+        if ( $full_name === NULL || $username === NULL || $email === NULL || $password === NULL || $confirm_password === NULL) {
+            $this->response([
+                'status' => FALSE,
+                'message' => 'field cannot be empty'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        } else {
+            if ( $password != $confirm_password ) {
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'password not same with confirm password'
                 ], REST_Controller::HTTP_NOT_FOUND);
+            } else {
+                $data = [
+                    'full_name'     => $full_name,
+                    'username'      => $username,
+                    'email'         => $email,
+                    'password'      => password_hash($password, PASSWORD_DEFAULT),
+                    'status_access'     => 'customer',
+                    'status_account'    => 0
+                ];
+
+                if ( $this->auth->registrationCustomer($data) > 0 ) {
+                    $this->response([
+                        'status'    => TRUE,
+                        'message'   => 'new account has been created',
+                        'data'      =>  $data
+                    ], REST_Controller::HTTP_CREATED);
+                } else {
+                    $this->response([
+                        'status' => FALSE,
+                        'message' => 'failed to create new account!'
+                    ], REST_Controller::HTTP_BAD_REQUEST);
+                }
             }
         }
     }
