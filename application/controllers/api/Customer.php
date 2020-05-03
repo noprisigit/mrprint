@@ -85,4 +85,49 @@ class Customer extends REST_Controller
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
+
+    public function create_transaction_printing_post()
+    {
+        date_default_timezone_set('asia/jakarta');
+        
+        $invoice = date('YmdHis') . $this->post('id_customer') . $this->post('id_partners');
+        $data = [
+            'invoice'           => 'PRJ-'.$invoice,
+            'nama_file'         => $this->post('nama_file'),
+            'jumlah_halaman'    => $this->post('jumlah_halaman'),
+            'tgl_pengambilan'   => $this->post('tgl_pengambilan'),
+            'jam_pengambilan'   => $this->post('jam_pengambilan'),
+            'komentar'          => $this->post('komentar'),
+            'id_customer'       => $this->post('id_customer'),
+            'id_partners'       => $this->post('id_partners'),
+            'status_printing'   => 0,
+            'type'              => 'printing',
+            'date_created'      => date('Y-m-d H:i:sa')
+        ];
+
+        $this->db->insert('master_transactions', $data);
+        
+        $this->db->select('id_transaction');
+        $this->db->from('master_transactions');
+        $this->db->where('invoice', "PRJ-".$invoice);
+        $transactions = $this->db->get()->row_array();
+    
+        $payment = [
+            'id_transaction'    => $transactions['id_transaction'],
+            'jumlah_bayar'      => $this->post('jumlah_bayar'),
+            'status_pembayaran' => 0
+        ];
+
+        $this->db->insert('master_payment', $payment);
+
+        $data['jumlah_bayar'] = $this->post('jumlah_bayar');
+        
+        array_push($data);
+
+        $this->response([
+            'status'    => TRUE,
+            'message'   => 'new transaction printing has been created',
+            'data'      =>  $data
+        ], REST_Controller::HTTP_CREATED);
+    }
 }
