@@ -44,4 +44,9 @@ class Customer extends REST_Controller
             ], REST_Controller::HTTP_OK);
         }
     }
+
+    public function list_print_shop_get()
+    {
+        
+    }
 }
