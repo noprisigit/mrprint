@@ -130,4 +130,24 @@ class Customer extends REST_Controller
             'data'      =>  $data
         ], REST_Controller::HTTP_CREATED);
     }
+
+    public function get_all_transactions_get()
+    {
+        $id_customer = $this->get('id_customer');
+
+        $transactions = $this->customer->getAllTransactions($id_customer);
+
+        if ( $transactions ) {
+            $this->response([
+                'status'    => TRUE,
+                'message'   => 'List transactions successfully loaded',
+                'data'      => $transactions
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status'    => FALSE,
+                'message'   => 'List transactions failed loaded',
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
+    }
 }
