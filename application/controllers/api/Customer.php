@@ -47,6 +47,22 @@ class Customer extends REST_Controller
 
     public function list_print_shop_get()
     {
-        
+        $id_provinsi = $this->get('id_provinsi');
+        $id_kabupaten = $this->get('id_kabupaten');
+
+        $print_shop = $this->customer->getAllPrintShop($id_provinsi, $id_kabupaten);
+
+        if ( $print_shop ) {
+            $this->response([
+                'status'    => TRUE,
+                'message'   => 'List print shop successfully loaded',
+                'data'      => $print_shop
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status'    => FALSE,
+                'message'   => 'print shop is not found',
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
     }
 }
