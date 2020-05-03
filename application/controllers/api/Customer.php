@@ -7,5 +7,9 @@ require APPPATH . 'libraries/Format.php';
 
 class Customer extends REST_Controller
 {
-    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('api/Customer_model', 'customer');
+    }
 }
