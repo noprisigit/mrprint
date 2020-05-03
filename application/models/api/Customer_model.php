@@ -25,4 +25,14 @@ class Customer_model extends CI_Model {
         $this->db->where('kabupaten', $id_kabupaten);
         return $this->db->get()->result_array();
     }
+
+    public function getDetailPrintShop($id) 
+    {
+        $this->db->select('*');
+        $this->db->from('partners');
+        $this->db->join('list_provinsi', 'partners.provinsi = list_provinsi.id_provinsi');
+        $this->db->join('list_kabupaten', 'partners.kabupaten = list_kabupaten.id_kabupaten');
+        $this->db->where('id_partners', $id);
+        return $this->db->get()->result_array();
+    }
 }

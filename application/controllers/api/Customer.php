@@ -65,4 +65,24 @@ class Customer extends REST_Controller
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
+
+    public function print_shop_get()
+    {
+        $id_print_shop = $this->get('id');
+
+        $print_shop = $this->customer->getDetailPrintShop($id_print_shop);
+
+        if ( $print_shop ) {
+            $this->response([
+                'status'    => TRUE,
+                'message'   => 'Detail print shop successfully loaded',
+                'data'      => $print_shop
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status'    => FALSE,
+                'message'   => 'print shop is not found',
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
+    }
 }
