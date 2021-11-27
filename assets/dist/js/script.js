@@ -10,8 +10,6 @@ $('.btn-detail-user').on('click', function () {
 	$('.modal-body .detail-link').empty();
 	$('.modal-body .detail-telphone').empty();
 
-	$('')
-
 	$('.modal-body .detail-nama').html(": " + $(this).data('nama'));
 	$('.modal-body .detail-shop').html(': ' + $(this).data('print_shop'));
 	$('.modal-body .detail-email').html(": " + $(this).data('email'));
